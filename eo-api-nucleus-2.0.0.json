@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "2.0.0",
-    "title": "Campaign Nucleus API Documentation",
-    "description": "This is API Documentation specific to the custom endpoints created for Campaign Nucleus by the Eyesover Team.",
+    "version": "2.0.1",
+    "title": "API Documentation",
+    "description": "Welcome to the API Documentation for custom endpoints created by the Eyesover Team for their customers.",
     "contact": {
       "url": "https://www.eyesover.com/contact/",
       "name": "Eyesover Support",
@@ -16,8 +16,7 @@
   },
   "servers": [
     {
-      "url": "https://api-custom.eyesover.com/nucleus",
-      "description": "Campain Nucleus Custom API"
+      "url": "https://api-custom.eyesover.com/nucleus"
     }
   ],
   "paths": {
@@ -51,8 +50,8 @@
                   "type": "array",
                   "examples": [
                     [
-                      "Donald Trump",
-                      "Joe Biden"
+                      "Coca-Cola",
+                      "Pepsi"
                     ]
                   ],
                   "items": {
@@ -62,8 +61,8 @@
                 "examples": {
                   "default": {
                     "value": [
-                      "Donald Trump",
-                      "Joe Biden"
+                      "Coca-Cola",
+                      "Pepsi"
                     ]
                   }
                 }
@@ -81,8 +80,7 @@
         ],
         "servers": [
           {
-            "url": "https://api-custom.eyesover.com/nucleus",
-            "description": "Campain Nucleus Custom API"
+            "url": "https://api-custom.eyesover.com/nucleus"
           }
         ]
       }
@@ -117,11 +115,8 @@
                   "type": "array",
                   "examples": [
                     [
-                      "Abortion Rights",
-                      "Border Security",
-                      "Climate change",
-                      "Domestic Terrorism",
-                      "Education"
+                      "Sugar Consumption",
+                      "Boycott"
                     ]
                   ],
                   "items": {
@@ -131,11 +126,8 @@
                 "examples": {
                   "default": {
                     "value": [
-                      "Abortion Rights",
-                      "Border Security",
-                      "Climate change",
-                      "Domestic Terrorism",
-                      "Education"
+                      "Sugar Consumption",
+                      "Boycott"
                     ]
                   }
                 }
@@ -153,8 +145,7 @@
         ],
         "servers": [
           {
-            "url": "https://api-custom.eyesover.com/nucleus",
-            "description": "Campain Nucleus Custom API"
+            "url": "https://api-custom.eyesover.com/nucleus"
           }
         ]
       }
@@ -180,7 +171,7 @@
           {
             "name": "entity",
             "in": "query",
-            "description": "Returns topic stats related to the Candidate/Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)\n",
+            "description": "Returns topic stats related to the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)\n",
             "schema": {
               "type": "string",
               "examples": [
@@ -211,8 +202,7 @@
         ],
         "servers": [
           {
-            "url": "https://api-custom.eyesover.com/nucleus",
-            "description": "Campain Nucleus Custom API"
+            "url": "https://api-custom.eyesover.com/nucleus"
           }
         ]
       }
@@ -262,7 +252,7 @@
             "schema": {
               "type": "string",
               "examples": [
-                "2022-12-08T20:00:00Z"
+                "2023-06-08T04:00:00+0400"
               ]
             }
           },
@@ -273,14 +263,14 @@
             "schema": {
               "type": "string",
               "examples": [
-                "2023-06-30T04:00:00Z"
+                "2023-06-30T04:00:00+0400"
               ]
             }
           },
           {
             "name": "entity",
             "in": "query",
-            "description": "Returns content referencing the Candidate/Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)\n",
+            "description": "Returns content referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)\n",
             "schema": {
               "type": "string",
               "examples": [
@@ -341,8 +331,7 @@
         ],
         "servers": [
           {
-            "url": "https://api-custom.eyesover.com/nucleus",
-            "description": "Campain Nucleus Custom API"
+            "url": "https://api-custom.eyesover.com/nucleus"
           }
         ]
       }
@@ -369,24 +358,15 @@
                 "properties": {
                   "entity": {
                     "type": "string",
-                    "description": "Name of the entity provided in the parameters (or 'All Entities')",
-                    "examples": [
-                      "Donald Trump"
-                    ]
+                    "description": "Name of the entity provided in the parameters (or 'All Entities')"
                   },
                   "ta": {
                     "type": "integer",
-                    "description": "Number of people talking about this entity over the past day",
-                    "examples": [
-                      10079
-                    ]
+                    "description": "Number of people talking about this entity over the past day"
                   },
                   "sent": {
                     "type": "number",
-                    "description": "The sentiment of all the people talking about this entity over the past day",
-                    "examples": [
-                      52.7902
-                    ]
+                    "description": "The sentiment of all the people talking about this entity over the past day"
                   }
                 }
               },
@@ -397,31 +377,19 @@
                   "properties": {
                     "ta": {
                       "type": "integer",
-                      "description": "Number of people talking about this topic (and entity, if provided) over the past day",
-                      "examples": [
-                        10079
-                      ]
+                      "description": "Number of people talking about this topic (and entity, if provided) over the past day"
                     },
                     "sent": {
                       "type": "number",
-                      "description": "The sentiment of all the people talking about this topic (and entity, if provided) over the past day",
-                      "examples": [
-                        52.7902
-                      ]
+                      "description": "The sentiment of all the people talking about this topic (and entity, if provided) over the past day"
                     },
                     "topic": {
                       "type": "string",
-                      "description": "The topic that is being discussed",
-                      "examples": [
-                        "Allegations"
-                      ]
+                      "description": "The topic that is being discussed"
                     },
                     "category": {
                       "type": "string",
-                      "description": "The broader category that the topic being discussed falls under",
-                      "examples": [
-                        "Political"
-                      ]
+                      "description": "The broader category that the topic being discussed falls under"
                     }
                   }
                 }
@@ -485,10 +453,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "Unique ID representing this particular news article",
-            "examples": [
-              "b7ebc19fa27da3966cbdd13d3977f144"
-            ]
+            "description": "Unique ID representing this particular news article"
           },
           "src": {
             "type": "string",
@@ -500,24 +465,15 @@
           "date": {
             "type": "string",
             "description": "Date content was published",
-            "format": "date-time",
-            "examples": [
-              "2023-06-05T22:33:20+0000"
-            ]
+            "format": "date-time"
           },
           "title": {
             "type": "string",
-            "description": "Title of the news article",
-            "examples": [
-              "Trump, DeSantis both slated to speak at Moms for Liberty summit at end of month"
-            ]
+            "description": "Title of the news article"
           },
           "content": {
             "type": "string",
-            "description": "Summary of the news article",
-            "examples": [
-              "Add one more battleground to the contest between Florida Gov. Ron DeSantis and former President Donald Trump, the two current favorites to be the GOP […]"
-            ]
+            "description": "Summary of the news article"
           },
           "author": {
             "type": "object",
@@ -528,13 +484,6 @@
                 "description": "link to the Publisher's home page"
               }
             },
-            "examples": [
-              {
-                "author_id": "https://www.usatoday.com",
-                "author_name": "USA TODAY",
-                "url": "https://www.usatoday.com"
-              }
-            ],
             "allOf": [
               {
                 "$ref": "#/components/schemas/BaseAuthorItem"
@@ -547,18 +496,12 @@
           "source_url": {
             "type": "string",
             "description": "Link to the news article",
-            "format": "url",
-            "examples": [
-              "https://www.usatoday.com/story/news/politics/elections/2023/06/05/trump-and-desantis-both-to-speak-at-moms-for-liberty-summit-at-end-of-month/70291188007/"
-            ]
+            "format": "url"
           },
           "img_url": {
             "type": "string",
             "description": "Link to the news article's main image, if one of was found",
-            "format": "url",
-            "examples": [
-              "https://www.usatoday.com/gcdn/presto/2023/05/11/NSHT/e5c6b786-89fa-4e61-b718-1c7fdb52507f-SAR_MOMS_FOR_LIBERTY_003.jpg?crop=5219,2936,x0,y0&width=3200&height=1801&format=pjpg&auto=webp"
-            ]
+            "format": "url"
           },
           "topics": {
             "$ref": "#/components/schemas/ContentTopicArray",
@@ -597,13 +540,6 @@
       },
       "ContentTopicArray": {
         "type": "array",
-        "examples": [
-          [
-            "Protests",
-            "Schools",
-            "COVID-19"
-          ]
-        ],
         "uniqueItems": true,
         "items": {
           "type": "string"
@@ -611,12 +547,6 @@
       },
       "ContentEntityArray": {
         "type": "array",
-        "examples": [
-          [
-            "Donald Trump",
-            "Joe Biden"
-          ]
-        ],
         "uniqueItems": true,
         "items": {
           "type": "string"
@@ -628,10 +558,7 @@
           "id": {
             "type": "string",
             "description": "ID of the Tweet from Twitter's API",
-            "format": "long",
-            "examples": [
-              "1665942137865748482"
-            ]
+            "format": "long"
           },
           "src": {
             "type": "string",
@@ -643,17 +570,11 @@
           "date": {
             "type": "string",
             "description": "Date content was published",
-            "format": "date-time",
-            "examples": [
-              "2023-06-06T04:42:12+0000"
-            ]
+            "format": "date-time"
           },
           "content": {
             "type": "string",
-            "description": "Tweet's content",
-            "examples": [
-              "Should Trump quit the race if he is indicted in the Maralago case? Yes. No."
-            ]
+            "description": "Tweet's content"
           },
           "author": {
             "type": "object",
@@ -667,13 +588,6 @@
             "required": [
               "username"
             ],
-            "examples": [
-              {
-                "author_id": "17980523",
-                "author_name": "Bill Mitchell",
-                "username": "mitchellvii"
-              }
-            ],
             "allOf": [
               {
                 "$ref": "#/components/schemas/BaseAuthorItem"
@@ -686,10 +600,7 @@
           "source_url": {
             "type": "string",
             "description": "Link to the tweet",
-            "format": "url",
-            "examples": [
-              "https://twitter.com/tmp/status/1665942137865748482"
-            ]
+            "format": "url"
           },
           "topics": {
             "$ref": "#/components/schemas/ContentTopicArray",
@@ -716,10 +627,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "Unique ID representing this Youtube comment",
-            "examples": [
-              "BA2KgaPjRr4_Ugxww9oyUjydyc2YIsx4AaABAg.9qalv58TXKi9qbBIsPps8y"
-            ]
+            "description": "Unique ID representing this Youtube comment"
           },
           "src": {
             "type": "string",
@@ -731,17 +639,11 @@
           "date": {
             "type": "string",
             "description": "Date content was published",
-            "format": "date-time",
-            "examples": [
-              "2023-06-05T22:33:20+0000"
-            ]
+            "format": "date-time"
           },
           "video_id": {
             "type": "string",
-            "description": "Youtube's API ID for this video where this comment came from",
-            "examples": [
-              "BA2KgaPjRr4"
-            ]
+            "description": "Youtube's API ID for this video where this comment came from"
           },
           "content": {
             "type": "string",
@@ -752,19 +654,12 @@
           },
           "author": {
             "$ref": "#/components/schemas/BaseAuthorItem",
-            "description": "Details about the author of this Youtube comment",
-            "example": {
-              "author_id": "UCpitNlHUHG_1Uacs_zCz2qg",
-              "author_name": "TheRbruin10"
-            }
+            "description": "Details about the author of this Youtube comment"
           },
           "source_url": {
             "type": "string",
             "description": "Link to the Youtube comment",
-            "format": "url",
-            "examples": [
-              "https://www.youtube.com/watch?v=BA2KgaPjRr4&lc=Ugxww9oyUjydyc2YIsx4AaABAg.9qalv58TXKi9qbBIsPps8y"
-            ]
+            "format": "url"
           },
           "topics": {
             "$ref": "#/components/schemas/ContentTopicArray",
@@ -792,10 +687,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "Unique ID representing this Reddit comment",
-            "examples": [
-              "141t71d_jn32bdi"
-            ]
+            "description": "Unique ID representing this Reddit comment"
           },
           "src": {
             "type": "string",
@@ -807,40 +699,24 @@
           "date": {
             "type": "string",
             "description": "Date content was published",
-            "format": "date-time",
-            "examples": [
-              "2023-06-06T05:20:18+0000"
-            ]
+            "format": "date-time"
           },
           "subreddit": {
             "type": "string",
-            "description": "Name of the subreddit where this comment came from",
-            "examples": [
-              "politics"
-            ]
+            "description": "Name of the subreddit where this comment came from"
           },
           "content": {
             "type": "string",
-            "description": "Content of the Reddit comment",
-            "examples": [
-              "I was a tutor at a center the night Trump was elected. I clearly remember that as it became obvious Trump was actually going to win, the mood was getting darker. A high school girl was sitting there with tears silently streaming down her face. It felt so poignant. And you know what […]."
-            ]
+            "description": "Content of the Reddit comment"
           },
           "author": {
             "$ref": "#/components/schemas/BaseAuthorItem",
-            "description": "Details about the author of this Reddit comment",
-            "example": {
-              "author_id": "5fqqn",
-              "author_name": "AskYourDoctor"
-            }
+            "description": "Details about the author of this Reddit comment"
           },
           "source_url": {
             "type": "string",
             "description": "Link to the Reddit comment",
-            "format": "url",
-            "examples": [
-              "https://www.reddit.com/r/politics/comments/141t71d/trump_suggests_he_is_about_to_be_charged_in/jn32bdi/"
-            ]
+            "format": "url"
           },
           "topics": {
             "$ref": "#/components/schemas/ContentTopicArray",
@@ -868,10 +744,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "Unique ID representing this Facebook post",
-            "examples": [
-              "7860876103_277176724886829"
-            ]
+            "description": "Unique ID representing this Facebook post"
           },
           "src": {
             "type": "string",
@@ -883,40 +756,24 @@
           "date": {
             "type": "string",
             "description": "Date content was published",
-            "format": "date-time",
-            "examples": [
-              "2023-05-18T22:07:00+0000"
-            ]
+            "format": "date-time"
           },
           "page_name": {
             "type": "string",
-            "description": "Name of the Facebook Page where this post came from",
-            "examples": [
-              "Joe Biden"
-            ]
+            "description": "Name of the Facebook Page where this post came from"
           },
           "content": {
             "type": "string",
-            "description": "Content of the post",
-            "examples": [
-              "I'm proud of the progress we have made. \\n\\nWe reduced the deficit in our first two years by $1.7 trillion. That includes more revenue by asking the wealthy and large corporations to begin to pay their fair share […]."
-            ]
+            "description": "Content of the post"
           },
           "author": {
             "$ref": "#/components/schemas/BaseAuthorItem",
-            "description": "Details about the author of this post",
-            "example": {
-              "author_id": "7860876103",
-              "author_name": "Joe Biden"
-            }
+            "description": "Details about the author of this post"
           },
           "source_url": {
             "type": "string",
             "description": "Link to the post",
-            "format": "url",
-            "examples": [
-              "https://www.facebook.com/277176724886829"
-            ]
+            "format": "url"
           },
           "topics": {
             "$ref": "#/components/schemas/ContentTopicArray",
@@ -944,10 +801,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "Unique ID representing this Facebook comment",
-            "examples": [
-              "281413854463116_a86efcff-91c0-31a4-bcc7-15e4f210e281"
-            ]
+            "description": "Unique ID representing this Facebook comment"
           },
           "src": {
             "type": "string",
@@ -959,32 +813,19 @@
           "date": {
             "type": "string",
             "description": "Date content was published",
-            "format": "date-time",
-            "examples": [
-              "2023-05-26T09:18:22+0000"
-            ]
+            "format": "date-time"
           },
           "page_name": {
             "type": "string",
-            "description": "Name of the Facebook Page where this comment came from",
-            "examples": [
-              "Joe Biden"
-            ]
+            "description": "Name of the Facebook Page where this comment came from"
           },
           "content": {
             "type": "string",
-            "description": "Content of the comment",
-            "examples": [
-              "Donald Trump Has a ten point lead And The harder the democrats try to get Donald Trump out of office.the higher Donald Trump numbers go."
-            ]
+            "description": "Content of the comment"
           },
           "author": {
             "$ref": "#/components/schemas/BaseAuthorItem",
-            "description": "Details about the author of this comment. Note: if `author_name=Facebook User` it is because Facebook as not provided us with the actual ID or Name of the user.",
-            "example": {
-              "author_id": "16850930564280824",
-              "author_name": "Facebook User"
-            }
+            "description": "Details about the author of this comment. Note: if `author_name=Facebook User` it is because Facebook as not provided us with the actual ID or Name of the user."
           },
           "source_url": {
             "type": "string",
