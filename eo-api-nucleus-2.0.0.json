@@ -1,0 +1,1025 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "2.0.0",
+    "title": "Campaign Nucleus API Documentation",
+    "description": "This is API Documentation specific to the custom endpoints created for Campaign Nucleus by the Eyesover Team.",
+    "contact": {
+      "url": "https://www.eyesover.com/contact/",
+      "name": "Eyesover Support",
+      "email": "support@eyesover.com"
+    },
+    "license": {
+      "url": "www.eyesover.com",
+      "name": "Private-Use-Only"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api-custom.eyesover.com/nucleus",
+      "description": "Campain Nucleus Custom API"
+    }
+  ],
+  "paths": {
+    "/entity/labels": {
+      "get": {
+        "summary": "returns the entity labels",
+        "description": "Returns the entity labels used by the Eyesover system to label data\n",
+        "operationId": "entityLabels",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "pass the id of the client for whom the data is being requested",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "dtjb"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of entities the system is using to label content and stats",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "examples": [
+                    [
+                      "Donald Trump",
+                      "Joe Biden"
+                    ]
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "examples": {
+                  "default": {
+                    "value": [
+                      "Donald Trump",
+                      "Joe Biden"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "not authorized to access this resource"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api-custom.eyesover.com/nucleus",
+            "description": "Campain Nucleus Custom API"
+          }
+        ]
+      }
+    },
+    "/topic/labels": {
+      "get": {
+        "summary": "returns the topic labels",
+        "description": "Returns the topic labels used by the Eyesover system to label data\n",
+        "operationId": "topicLabels",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "pass the id of the client for whom the data is being requested",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "dtjb"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of topics the system is using to label content and stats",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "examples": [
+                    [
+                      "Abortion Rights",
+                      "Border Security",
+                      "Climate change",
+                      "Domestic Terrorism",
+                      "Education"
+                    ]
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "examples": {
+                  "default": {
+                    "value": [
+                      "Abortion Rights",
+                      "Border Security",
+                      "Climate change",
+                      "Domestic Terrorism",
+                      "Education"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "not authorized to access this resource"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api-custom.eyesover.com/nucleus",
+            "description": "Campain Nucleus Custom API"
+          }
+        ]
+      }
+    },
+    "/topic/stats": {
+      "get": {
+        "summary": "returns topic stats",
+        "description": "Returns the sentiment and talking about status for every topic mentioned in this day's conversations\n",
+        "operationId": "getTopicStats",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "pass the id of the client for whom the data is being requested",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "dtjb"
+              ]
+            }
+          },
+          {
+            "name": "entity",
+            "in": "query",
+            "description": "Returns topic stats related to the Candidate/Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)\n",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "Donald Trump"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of topics with the day's sentiment and talking about stats",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopicStatsResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "not authorized to access this resource"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api-custom.eyesover.com/nucleus",
+            "description": "Campain Nucleus Custom API"
+          }
+        ]
+      }
+    },
+    "/content": {
+      "get": {
+        "summary": "returns social media content",
+        "description": "Returns the social media content that matches the search params used in the request\n",
+        "operationId": "searchContent",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "pass the id of the client for whom the data is being requested",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "dtjb"
+              ]
+            }
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "description": "Returns content from the specified social media source(s). When no param are given, the default will be to return only News and Twitter sources (e.g. `source=news,twitter`)\n",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "news",
+                  "twitter",
+                  "youtube",
+                  "facebook_post",
+                  "facebook_comment",
+                  "reddit"
+                ]
+              }
+            }
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "description": "Returns content created _after_ the given date. Date should be formatted as `YYYY-MM-DDTHH:MM:SS±HHMM` (or `YYYY-MM-DDTHH:MM:SSZ`).\n\nNote: when this parameter is used, the content is returned in _reverse_ chronological order. Otherwise it is returned chronologically.\n",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "2022-12-08T20:00:00Z"
+              ]
+            }
+          },
+          {
+            "name": "until",
+            "in": "query",
+            "description": "Returns content created _before_ the given date. Date should be formatted as `YYYY-MM-DDTHH:MM:SS±HHMM` (or `YYYY-MM-DDTHH:MM:SSZ`).\n",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "2023-06-30T04:00:00Z"
+              ]
+            }
+          },
+          {
+            "name": "entity",
+            "in": "query",
+            "description": "Returns content referencing the Candidate/Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)\n",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "Donald Trump"
+              ]
+            }
+          },
+          {
+            "name": "topic",
+            "in": "query",
+            "description": "Returns content referencing the Topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)\n",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "Border Security"
+              ]
+            }
+          },
+          {
+            "name": "next",
+            "in": "query",
+            "description": "_For pagination only_\n\nIf the search has more content than can be returned in one call, a `next` page token will be attached to the content results.\n\nNOTE: you MUST still provide the `clientId` parameter. No other parameters besides the `clientId` and the `next` key will be observed by the API\n",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "prev",
+            "in": "query",
+            "description": "_For pagination only_\n\nUse this parameter to page (backwards) to the previous page you were just on.\n\nNOTE: you MUST still provide the `clientId` parameter. No other parameters besides the `clientId` and the `prev` key will be observed by the API\n",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of social media content matching criteria provided",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContentResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "not authorized to access this resource"
+          },
+          "422": {
+            "description": "bad input parameter(s)"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api-custom.eyesover.com/nucleus",
+            "description": "Campain Nucleus Custom API"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "name": "x-api-key",
+        "in": "header"
+      }
+    },
+    "schemas": {
+      "TopicStatsResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "overall": {
+                "type": "object",
+                "description": "Overall stats based on the parameters provided",
+                "properties": {
+                  "entity": {
+                    "type": "string",
+                    "description": "Name of the entity provided in the parameters (or 'All Entities')",
+                    "examples": [
+                      "Donald Trump"
+                    ]
+                  },
+                  "ta": {
+                    "type": "integer",
+                    "description": "Number of people talking about this entity over the past day",
+                    "examples": [
+                      10079
+                    ]
+                  },
+                  "sent": {
+                    "type": "number",
+                    "description": "The sentiment of all the people talking about this entity over the past day",
+                    "examples": [
+                      52.7902
+                    ]
+                  }
+                }
+              },
+              "topics": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "ta": {
+                      "type": "integer",
+                      "description": "Number of people talking about this topic (and entity, if provided) over the past day",
+                      "examples": [
+                        10079
+                      ]
+                    },
+                    "sent": {
+                      "type": "number",
+                      "description": "The sentiment of all the people talking about this topic (and entity, if provided) over the past day",
+                      "examples": [
+                        52.7902
+                      ]
+                    },
+                    "topic": {
+                      "type": "string",
+                      "description": "The topic that is being discussed",
+                      "examples": [
+                        "Allegations"
+                      ]
+                    },
+                    "category": {
+                      "type": "string",
+                      "description": "The broader category that the topic being discussed falls under",
+                      "examples": [
+                        "Political"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ContentResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "description": "Content objects matching the parameters given",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/NewsItem"
+                },
+                {
+                  "$ref": "#/components/schemas/TwitterItem"
+                },
+                {
+                  "$ref": "#/components/schemas/YoutubeItem"
+                },
+                {
+                  "$ref": "#/components/schemas/RedditItem"
+                },
+                {
+                  "$ref": "#/components/schemas/FacebookPostItem"
+                },
+                {
+                  "$ref": "#/components/schemas/FacebookCommentItem"
+                }
+              ]
+            }
+          },
+          "pagination": {
+            "type": "object",
+            "properties": {
+              "next": {
+                "type": "string",
+                "description": "Token for the _next_ page of search results",
+                "examples": [
+                  "e32dbef8d4967b716dffade149e4513d"
+                ]
+              },
+              "prev": {
+                "type": "string",
+                "description": "Token for the _previous_ page of search results",
+                "examples": [
+                  "94d29aa2ed39f2050e6e2d0b817e9f41"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "NewsItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique ID representing this particular news article",
+            "examples": [
+              "b7ebc19fa27da3966cbdd13d3977f144"
+            ]
+          },
+          "src": {
+            "type": "string",
+            "description": "Social media source",
+            "examples": [
+              "news"
+            ]
+          },
+          "date": {
+            "type": "string",
+            "description": "Date content was published",
+            "format": "date-time",
+            "examples": [
+              "2023-06-05T22:33:20+0000"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the news article",
+            "examples": [
+              "Trump, DeSantis both slated to speak at Moms for Liberty summit at end of month"
+            ]
+          },
+          "content": {
+            "type": "string",
+            "description": "Summary of the news article",
+            "examples": [
+              "Add one more battleground to the contest between Florida Gov. Ron DeSantis and former President Donald Trump, the two current favorites to be the GOP […]"
+            ]
+          },
+          "author": {
+            "type": "object",
+            "description": "Details about the publisher/author of the news article",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "link to the Publisher's home page"
+              }
+            },
+            "examples": [
+              {
+                "author_id": "https://www.usatoday.com",
+                "author_name": "USA TODAY",
+                "url": "https://www.usatoday.com"
+              }
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseAuthorItem"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "source_url": {
+            "type": "string",
+            "description": "Link to the news article",
+            "format": "url",
+            "examples": [
+              "https://www.usatoday.com/story/news/politics/elections/2023/06/05/trump-and-desantis-both-to-speak-at-moms-for-liberty-summit-at-end-of-month/70291188007/"
+            ]
+          },
+          "img_url": {
+            "type": "string",
+            "description": "Link to the news article's main image, if one of was found",
+            "format": "url",
+            "examples": [
+              "https://www.usatoday.com/gcdn/presto/2023/05/11/NSHT/e5c6b786-89fa-4e61-b718-1c7fdb52507f-SAR_MOMS_FOR_LIBERTY_003.jpg?crop=5219,2936,x0,y0&width=3200&height=1801&format=pjpg&auto=webp"
+            ]
+          },
+          "topics": {
+            "$ref": "#/components/schemas/ContentTopicArray",
+            "description": "List of Topics identified in the content"
+          },
+          "entities": {
+            "$ref": "#/components/schemas/ContentEntityArray",
+            "description": "List of Entities identified in the content"
+          }
+        },
+        "required": [
+          "id",
+          "src",
+          "date",
+          "content",
+          "author",
+          "source_url",
+          "topics",
+          "entities"
+        ]
+      },
+      "BaseAuthorItem": {
+        "type": "object",
+        "properties": {
+          "author_id": {
+            "type": "string"
+          },
+          "author_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "author_id",
+          "author_name"
+        ]
+      },
+      "ContentTopicArray": {
+        "type": "array",
+        "examples": [
+          [
+            "Protests",
+            "Schools",
+            "COVID-19"
+          ]
+        ],
+        "uniqueItems": true,
+        "items": {
+          "type": "string"
+        }
+      },
+      "ContentEntityArray": {
+        "type": "array",
+        "examples": [
+          [
+            "Donald Trump",
+            "Joe Biden"
+          ]
+        ],
+        "uniqueItems": true,
+        "items": {
+          "type": "string"
+        }
+      },
+      "TwitterItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID of the Tweet from Twitter's API",
+            "format": "long",
+            "examples": [
+              "1665942137865748482"
+            ]
+          },
+          "src": {
+            "type": "string",
+            "description": "Social media source",
+            "examples": [
+              "twitter"
+            ]
+          },
+          "date": {
+            "type": "string",
+            "description": "Date content was published",
+            "format": "date-time",
+            "examples": [
+              "2023-06-06T04:42:12+0000"
+            ]
+          },
+          "content": {
+            "type": "string",
+            "description": "Tweet's content",
+            "examples": [
+              "Should Trump quit the race if he is indicted in the Maralago case? Yes. No."
+            ]
+          },
+          "author": {
+            "type": "object",
+            "description": "Details about the Tweet author",
+            "properties": {
+              "username": {
+                "type": "string",
+                "description": "handle/username of the Tweet's author"
+              }
+            },
+            "required": [
+              "username"
+            ],
+            "examples": [
+              {
+                "author_id": "17980523",
+                "author_name": "Bill Mitchell",
+                "username": "mitchellvii"
+              }
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseAuthorItem"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "source_url": {
+            "type": "string",
+            "description": "Link to the tweet",
+            "format": "url",
+            "examples": [
+              "https://twitter.com/tmp/status/1665942137865748482"
+            ]
+          },
+          "topics": {
+            "$ref": "#/components/schemas/ContentTopicArray",
+            "description": "List of Topics identified in the content"
+          },
+          "entities": {
+            "$ref": "#/components/schemas/ContentEntityArray",
+            "description": "List of Entities identified in the content"
+          }
+        },
+        "required": [
+          "id",
+          "src",
+          "date",
+          "content",
+          "author",
+          "source_url",
+          "topics",
+          "entities"
+        ]
+      },
+      "YoutubeItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique ID representing this Youtube comment",
+            "examples": [
+              "BA2KgaPjRr4_Ugxww9oyUjydyc2YIsx4AaABAg.9qalv58TXKi9qbBIsPps8y"
+            ]
+          },
+          "src": {
+            "type": "string",
+            "description": "Social media source",
+            "examples": [
+              "youtube"
+            ]
+          },
+          "date": {
+            "type": "string",
+            "description": "Date content was published",
+            "format": "date-time",
+            "examples": [
+              "2023-06-05T22:33:20+0000"
+            ]
+          },
+          "video_id": {
+            "type": "string",
+            "description": "Youtube's API ID for this video where this comment came from",
+            "examples": [
+              "BA2KgaPjRr4"
+            ]
+          },
+          "content": {
+            "type": "string",
+            "description": "Content of the Youtube comment",
+            "examples": [
+              "And Biden encouraging all the migrants to go through the dangerous journey through central America and Mexico. I am sure Desantis treatment is A MILLION times better than […]."
+            ]
+          },
+          "author": {
+            "$ref": "#/components/schemas/BaseAuthorItem",
+            "description": "Details about the author of this Youtube comment",
+            "example": {
+              "author_id": "UCpitNlHUHG_1Uacs_zCz2qg",
+              "author_name": "TheRbruin10"
+            }
+          },
+          "source_url": {
+            "type": "string",
+            "description": "Link to the Youtube comment",
+            "format": "url",
+            "examples": [
+              "https://www.youtube.com/watch?v=BA2KgaPjRr4&lc=Ugxww9oyUjydyc2YIsx4AaABAg.9qalv58TXKi9qbBIsPps8y"
+            ]
+          },
+          "topics": {
+            "$ref": "#/components/schemas/ContentTopicArray",
+            "description": "List of Topics identified in the content"
+          },
+          "entities": {
+            "$ref": "#/components/schemas/ContentEntityArray",
+            "description": "List of Entities identified in the content"
+          }
+        },
+        "required": [
+          "id",
+          "src",
+          "date",
+          "video_id",
+          "content",
+          "author",
+          "source_url",
+          "topics",
+          "entities"
+        ]
+      },
+      "RedditItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique ID representing this Reddit comment",
+            "examples": [
+              "141t71d_jn32bdi"
+            ]
+          },
+          "src": {
+            "type": "string",
+            "description": "Social media source",
+            "examples": [
+              "reddit"
+            ]
+          },
+          "date": {
+            "type": "string",
+            "description": "Date content was published",
+            "format": "date-time",
+            "examples": [
+              "2023-06-06T05:20:18+0000"
+            ]
+          },
+          "subreddit": {
+            "type": "string",
+            "description": "Name of the subreddit where this comment came from",
+            "examples": [
+              "politics"
+            ]
+          },
+          "content": {
+            "type": "string",
+            "description": "Content of the Reddit comment",
+            "examples": [
+              "I was a tutor at a center the night Trump was elected. I clearly remember that as it became obvious Trump was actually going to win, the mood was getting darker. A high school girl was sitting there with tears silently streaming down her face. It felt so poignant. And you know what […]."
+            ]
+          },
+          "author": {
+            "$ref": "#/components/schemas/BaseAuthorItem",
+            "description": "Details about the author of this Reddit comment",
+            "example": {
+              "author_id": "5fqqn",
+              "author_name": "AskYourDoctor"
+            }
+          },
+          "source_url": {
+            "type": "string",
+            "description": "Link to the Reddit comment",
+            "format": "url",
+            "examples": [
+              "https://www.reddit.com/r/politics/comments/141t71d/trump_suggests_he_is_about_to_be_charged_in/jn32bdi/"
+            ]
+          },
+          "topics": {
+            "$ref": "#/components/schemas/ContentTopicArray",
+            "description": "List of Topics identified in the content"
+          },
+          "entities": {
+            "$ref": "#/components/schemas/ContentEntityArray",
+            "description": "List of Entities identified in the content"
+          }
+        },
+        "required": [
+          "id",
+          "src",
+          "date",
+          "subreddit",
+          "content",
+          "author",
+          "source_url",
+          "topics",
+          "entities"
+        ]
+      },
+      "FacebookPostItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique ID representing this Facebook post",
+            "examples": [
+              "7860876103_277176724886829"
+            ]
+          },
+          "src": {
+            "type": "string",
+            "description": "Social media source",
+            "examples": [
+              "facebook_post"
+            ]
+          },
+          "date": {
+            "type": "string",
+            "description": "Date content was published",
+            "format": "date-time",
+            "examples": [
+              "2023-05-18T22:07:00+0000"
+            ]
+          },
+          "page_name": {
+            "type": "string",
+            "description": "Name of the Facebook Page where this post came from",
+            "examples": [
+              "Joe Biden"
+            ]
+          },
+          "content": {
+            "type": "string",
+            "description": "Content of the post",
+            "examples": [
+              "I'm proud of the progress we have made. \\n\\nWe reduced the deficit in our first two years by $1.7 trillion. That includes more revenue by asking the wealthy and large corporations to begin to pay their fair share […]."
+            ]
+          },
+          "author": {
+            "$ref": "#/components/schemas/BaseAuthorItem",
+            "description": "Details about the author of this post",
+            "example": {
+              "author_id": "7860876103",
+              "author_name": "Joe Biden"
+            }
+          },
+          "source_url": {
+            "type": "string",
+            "description": "Link to the post",
+            "format": "url",
+            "examples": [
+              "https://www.facebook.com/277176724886829"
+            ]
+          },
+          "topics": {
+            "$ref": "#/components/schemas/ContentTopicArray",
+            "description": "List of Topics identified in the post"
+          },
+          "entities": {
+            "$ref": "#/components/schemas/ContentEntityArray",
+            "description": "List of Entities identified in the post"
+          }
+        },
+        "required": [
+          "id",
+          "src",
+          "date",
+          "page_name",
+          "content",
+          "author",
+          "source_url",
+          "topics",
+          "entities"
+        ]
+      },
+      "FacebookCommentItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique ID representing this Facebook comment",
+            "examples": [
+              "281413854463116_a86efcff-91c0-31a4-bcc7-15e4f210e281"
+            ]
+          },
+          "src": {
+            "type": "string",
+            "description": "Social media source",
+            "examples": [
+              "facebook_comment"
+            ]
+          },
+          "date": {
+            "type": "string",
+            "description": "Date content was published",
+            "format": "date-time",
+            "examples": [
+              "2023-05-26T09:18:22+0000"
+            ]
+          },
+          "page_name": {
+            "type": "string",
+            "description": "Name of the Facebook Page where this comment came from",
+            "examples": [
+              "Joe Biden"
+            ]
+          },
+          "content": {
+            "type": "string",
+            "description": "Content of the comment",
+            "examples": [
+              "Donald Trump Has a ten point lead And The harder the democrats try to get Donald Trump out of office.the higher Donald Trump numbers go."
+            ]
+          },
+          "author": {
+            "$ref": "#/components/schemas/BaseAuthorItem",
+            "description": "Details about the author of this comment. Note: if `author_name=Facebook User` it is because Facebook as not provided us with the actual ID or Name of the user.",
+            "example": {
+              "author_id": "16850930564280824",
+              "author_name": "Facebook User"
+            }
+          },
+          "source_url": {
+            "type": "string",
+            "description": "Link to the post where the comment was made",
+            "format": "url",
+            "examples": [
+              "https://www.facebook.com/281413854463116"
+            ]
+          },
+          "topics": {
+            "$ref": "#/components/schemas/ContentTopicArray",
+            "description": "List of Topics identified in the post"
+          },
+          "entities": {
+            "$ref": "#/components/schemas/ContentEntityArray",
+            "description": "List of Entities identified in the post"
+          }
+        },
+        "required": [
+          "id",
+          "src",
+          "date",
+          "page_name",
+          "content",
+          "author",
+          "source_url",
+          "topics",
+          "entities"
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ]
+}
