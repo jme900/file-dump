@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "2.0.1",
+    "version": "2.0.2",
     "title": "API Documentation",
     "description": "Welcome to the API Documentation for custom endpoints created by the Eyesover Team for their customers.",
     "contact": {
@@ -22,21 +22,21 @@
   "paths": {
     "/entity/labels": {
       "get": {
-        "summary": "returns the entity labels",
+        "summary": "Entity Labels",
         "description": "Returns the entity labels used by the Eyesover system to label data\n",
         "operationId": "entityLabels",
         "parameters": [
           {
             "name": "clientId",
             "in": "query",
-            "description": "pass the id of the client for whom the data is being requested",
+            "description": "pass the clientId of the system for which data is being requested",
             "required": true,
             "style": "form",
             "explode": true,
             "schema": {
               "type": "string",
               "examples": [
-                "dtjb"
+                "ga-abc"
               ]
             }
           }
@@ -87,21 +87,21 @@
     },
     "/topic/labels": {
       "get": {
-        "summary": "returns the topic labels",
+        "summary": "Topic Labels",
         "description": "Returns the topic labels used by the Eyesover system to label data\n",
         "operationId": "topicLabels",
         "parameters": [
           {
             "name": "clientId",
             "in": "query",
-            "description": "pass the id of the client for whom the data is being requested",
+            "description": "pass the clientId of the system for which data is being requested",
             "required": true,
             "style": "form",
             "explode": true,
             "schema": {
               "type": "string",
               "examples": [
-                "dtjb"
+                "ga-abc"
               ]
             }
           }
@@ -152,19 +152,19 @@
     },
     "/topic/stats": {
       "get": {
-        "summary": "returns topic stats",
+        "summary": "Topic Stats",
         "description": "Returns the sentiment and talking about status for every topic mentioned in this day's conversations\n",
         "operationId": "getTopicStats",
         "parameters": [
           {
             "name": "clientId",
             "in": "query",
-            "description": "pass the id of the client for whom the data is being requested",
+            "description": "pass the clientId of the system for which data is being requested",
             "required": true,
             "schema": {
               "type": "string",
               "examples": [
-                "dtjb"
+                "ga-abc"
               ]
             }
           },
@@ -175,7 +175,7 @@
             "schema": {
               "type": "string",
               "examples": [
-                "Donald Trump"
+                "Coca-Cola"
               ]
             }
           }
@@ -207,21 +207,407 @@
         ]
       }
     },
+    "/impact/gain_loss": {
+      "get": {
+        "summary": "Support Base Gain/Loss by Day",
+        "description": "Returns the last 7 days  of impact (gains and losses of support) based on the provided topic and entity combination\n",
+        "operationId": "getImpactGainLoss",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "pass the clientId of the system for which data is being requested",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "ga-abc"
+              ]
+            }
+          },
+          {
+            "name": "entity",
+            "in": "query",
+            "description": "Filter stats referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)\n",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "Coca-Cola"
+              ]
+            }
+          },
+          {
+            "name": "topic",
+            "in": "query",
+            "description": "Filter stats referencing the Topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)\n",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "Sugar Consumption"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of the last 7 days of stats with each day's impact (gain and loss) numbers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GainLossResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "not authorized to access this resource"
+          },
+          "422": {
+            "description": "bad input parameter(s)"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api-custom.eyesover.com/nucleus"
+          }
+        ]
+      }
+    },
+    "/impact/gain_loss/topics": {
+      "get": {
+        "summary": "Support Base Gain/Loss per Topic",
+        "description": "Returns today's topics with the most impact (by gains and losses of support) based on the entity parameter\n",
+        "operationId": "getTopicImpactGainLoss",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "pass the clientId of the system for which data is being requested",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "ga-abc"
+              ]
+            }
+          },
+          {
+            "name": "entity",
+            "in": "query",
+            "description": "Filter stats referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)\n",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "Coca-Cola"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of today's topics with the most impact (by gain or loss of support)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopicGainLossResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "not authorized to access this resource"
+          },
+          "422": {
+            "description": "bad input parameter(s)"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api-custom.eyesover.com/nucleus"
+          }
+        ]
+      }
+    },
+    "/impact/gain_loss/entities": {
+      "get": {
+        "summary": "Support Base Gain/Loss per Entity",
+        "description": "Returns today's entities with the most impact (by gains and losses of support) based on the topic parameter\n",
+        "operationId": "getEntityImpactGainLoss",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "pass the clientId of the system for which data is being requested",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "ga-abc"
+              ]
+            }
+          },
+          {
+            "name": "topic",
+            "in": "query",
+            "description": "Filter stats referencing the topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)\n",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "Sugar Consumption"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of today's entities with the most impact (by gain or loss of support)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityGainLossResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "not authorized to access this resource"
+          },
+          "422": {
+            "description": "bad input parameter(s)"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api-custom.eyesover.com/nucleus"
+          }
+        ]
+      }
+    },
+    "/impact/overall_support": {
+      "get": {
+        "summary": "Impact to the Support Base by Day",
+        "description": "Returns the last 7 days of impact to the support (scale = 0.0-100.0) based on the provided topic and entity combination\n",
+        "operationId": "getImpactOverallSupport",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "pass the clientId of the system for which data is being requested",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "ga-abc"
+              ]
+            }
+          },
+          {
+            "name": "entity",
+            "in": "query",
+            "description": "Filter stats referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)\n",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "Coca-Cola"
+              ]
+            }
+          },
+          {
+            "name": "topic",
+            "in": "query",
+            "description": "Filter stats referencing the Topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)\n",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "Sugar Consumption"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of the last 7 days of stats with each day's impact to the support",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OverallSupportResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "not authorized to access this resource"
+          },
+          "422": {
+            "description": "bad input parameter(s)"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api-custom.eyesover.com/nucleus"
+          }
+        ]
+      }
+    },
+    "/impact/overall_support/topics": {
+      "get": {
+        "summary": "Impact to the Support Base per Topic",
+        "description": "Returns today's topics with the most impact to the support of the entity provided in the parameter\n",
+        "operationId": "getTopicImpactOverallSupport",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "pass the clientId of the system for which data is being requested",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "ga-abc"
+              ]
+            }
+          },
+          {
+            "name": "entity",
+            "in": "query",
+            "description": "Filter stats referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)\n",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "Coca-Cola"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of topics with the most impact to an entity's support base",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopicOverallSupportResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "not authorized to access this resource"
+          },
+          "422": {
+            "description": "bad input parameter(s)"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api-custom.eyesover.com/nucleus"
+          }
+        ]
+      }
+    },
+    "/impact/overall_support/entities": {
+      "get": {
+        "summary": "Impact to the Support Base per Entity",
+        "description": "Returns today's most impacted entities based on the topic parameter\n",
+        "operationId": "getEntityImpactOverallSupport",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "pass the clientId of the system for which data is being requested",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "ga-abc"
+              ]
+            }
+          },
+          {
+            "name": "topic",
+            "in": "query",
+            "description": "Filter stats referencing the topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)\n",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "Sugar Consumption"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of entities ordered by greatest impact to the entity's support base",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityOverallSupportResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "not authorized to access this resource"
+          },
+          "422": {
+            "description": "bad input parameter(s)"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api-custom.eyesover.com/nucleus"
+          }
+        ]
+      }
+    },
     "/content": {
       "get": {
-        "summary": "returns social media content",
+        "summary": "Social Media Content",
         "description": "Returns the social media content that matches the search params used in the request\n",
         "operationId": "searchContent",
         "parameters": [
           {
             "name": "clientId",
             "in": "query",
-            "description": "pass the id of the client for whom the data is being requested",
+            "description": "pass the clientId of the system for which data is being requested",
             "required": true,
             "schema": {
               "type": "string",
               "examples": [
-                "dtjb"
+                "ga-abc"
               ]
             }
           },
@@ -252,7 +638,7 @@
             "schema": {
               "type": "string",
               "examples": [
-                "2023-06-08T04:00:00+0400"
+                "1970-01-01T00:00:00+0400"
               ]
             }
           },
@@ -263,7 +649,7 @@
             "schema": {
               "type": "string",
               "examples": [
-                "2023-06-30T04:00:00+0400"
+                "1970-01-01T00:00:00+0400"
               ]
             }
           },
@@ -274,7 +660,7 @@
             "schema": {
               "type": "string",
               "examples": [
-                "Donald Trump"
+                "Coca-Cola"
               ]
             }
           },
@@ -285,7 +671,7 @@
             "schema": {
               "type": "string",
               "examples": [
-                "Border Security"
+                "Sugar Consumption"
               ]
             }
           },
@@ -335,6 +721,370 @@
           }
         ]
       }
+    },
+    "/sentiment/current": {
+      "get": {
+        "summary": "Current Sentiment",
+        "description": "Get the current sentiment (aggregated from the last 24 hours of content) based on the entity and/or topic provided.",
+        "operationId": "getSentimentCurrent",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "pass the clientId of the system for which data is being requested",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "ga-abc"
+              ]
+            }
+          },
+          {
+            "name": "entity",
+            "in": "query",
+            "description": "Filter stats referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)\n",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "Coca-Cola"
+              ]
+            }
+          },
+          {
+            "name": "topic",
+            "in": "query",
+            "description": "Filter stats referencing the Topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)\n",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "Sugar Consumption"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sentiment based on the parameters provided",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sent": {
+                      "type": "number",
+                      "description": "The sentiment of all the people talking about this entity and/or topic over the past day (scale = 0.0-100.0)",
+                      "example": 12.3456
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "not authorized to access this resource"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api-custom.eyesover.com/nucleus"
+          }
+        ]
+      }
+    },
+    "/sentiment/graph": {
+      "get": {
+        "summary": "Sentiment Graph",
+        "description": "Get a list of the last 30 days of sentiment and talking about numbers based on the entity and/or topic provided ready for graphing",
+        "operationId": "getSentimentGraph",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "pass the clientId of the system for which data is being requested",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "ga-abc"
+              ]
+            }
+          },
+          {
+            "name": "entity",
+            "in": "query",
+            "description": "Filter stats referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)\n",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "Coca-Cola"
+              ]
+            }
+          },
+          {
+            "name": "topic",
+            "in": "query",
+            "description": "Filter stats referencing the Topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)\n",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "Sugar Consumption"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of the last 30 days of sentiment and talking about stats",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SentimentGraphResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "not authorized to access this resource"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api-custom.eyesover.com/nucleus"
+          }
+        ]
+      }
+    },
+    "/sentiment/termcloud": {
+      "get": {
+        "summary": "Top Words/Term Cloud",
+        "description": "Get a list of the top words (from the past 24 hours) used with an entity and/or topic",
+        "operationId": "getTermCloud",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "pass the clientId of the system for which data is being requested",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "ga-abc"
+              ]
+            }
+          },
+          {
+            "name": "entity",
+            "in": "query",
+            "description": "Filter words referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)\n",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "Coca-Cola"
+              ]
+            }
+          },
+          {
+            "name": "topic",
+            "in": "query",
+            "description": "Filter words referencing the Topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)\n",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "Sugar Consumption"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of the top words identified based on the parameters given",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "words": {
+                            "type": "string",
+                            "description": "The top word/phrase that was identified"
+                          },
+                          "ta": {
+                            "type": "integer",
+                            "description": "Number of people talking about this topic over the past day"
+                          },
+                          "sent": {
+                            "type": "number",
+                            "description": "The sentiment of all the people talking about this topic over the past day (scale = 0.0-100.0)",
+                            "examples": [
+                              12.3456
+                            ]
+                          },
+                          "topic": {
+                            "type": "string",
+                            "description": "The topic that is being discussed"
+                          },
+                          "category": {
+                            "type": "string",
+                            "description": "The broader category that the topic being discussed falls under"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "not authorized to access this resource"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api-custom.eyesover.com/nucleus"
+          }
+        ]
+      }
+    },
+    "/support/current": {
+      "get": {
+        "summary": "Current Support Score",
+        "description": "Get a list of all the entities and each of their support scores based on the past 24 hours of content, ready for graphing",
+        "operationId": "getSupportCurrent",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "pass the clientId of the system for which data is being requested",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "ga-abc"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of the support scores for each entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "x": {
+                            "type": "string",
+                            "description": "Name of the entity"
+                          },
+                          "y": {
+                            "type": "number",
+                            "description": "The support score (scale = 0.0-100.0) for the entity",
+                            "examples": [
+                              12.3456
+                            ]
+                          },
+                          "color": {
+                            "type": "string",
+                            "description": "HEX color code for the entity (often the brand's primary color)",
+                            "examples": [
+                              "#4862a3"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "not authorized to access this resource"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api-custom.eyesover.com/nucleus"
+          }
+        ]
+      }
+    },
+    "/support/graph": {
+      "get": {
+        "summary": "30-day Support Score",
+        "description": "Get a list of all the entities and each of their support scores for the last 30 days, ready for graphing",
+        "operationId": "getSupportGraph",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "pass the clientId of the system for which data is being requested",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "ga-abc"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of the last 30 days worth of support scores for each entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SupportGraphResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "not authorized to access this resource"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api-custom.eyesover.com/nucleus"
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -366,7 +1116,10 @@
                   },
                   "sent": {
                     "type": "number",
-                    "description": "The sentiment of all the people talking about this entity over the past day"
+                    "description": "The sentiment of all the people talking about this entity over the past day (scale = 0.0-100.0)",
+                    "examples": [
+                      12.3456
+                    ]
                   }
                 }
               },
@@ -381,7 +1134,10 @@
                     },
                     "sent": {
                       "type": "number",
-                      "description": "The sentiment of all the people talking about this topic (and entity, if provided) over the past day"
+                      "description": "The sentiment of all the people talking about this topic (and entity, if provided) over the past day (scale = 0.0-100.0)",
+                      "examples": [
+                        12.3456
+                      ]
                     },
                     "topic": {
                       "type": "string",
@@ -398,12 +1154,168 @@
           }
         }
       },
+      "GainLossResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "gained": {
+                  "type": "integer",
+                  "description": "Number of people talking positively about the topic who used to talk negatively about it"
+                },
+                "lost": {
+                  "type": "integer",
+                  "description": "Number of people talking negatively about the topic who used to talk positively about it"
+                },
+                "topic": {
+                  "type": "string",
+                  "description": "The name of the topic which has gained/lost support"
+                },
+                "date": {
+                  "type": "string",
+                  "description": "Date of the support gained/lost",
+                  "format": "date-time"
+                }
+              }
+            }
+          }
+        }
+      },
+      "TopicGainLossResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "gained": {
+                  "type": "integer",
+                  "description": "Number of people, over the past day, now talking positively about the topic who used to talk negatively about it"
+                },
+                "lost": {
+                  "type": "integer",
+                  "description": "Number of people, over the past day, now talking negatively about the topic who used to talk positively about it"
+                },
+                "topic": {
+                  "type": "string",
+                  "description": "The name of the topic which has gained/lost support"
+                }
+              }
+            }
+          }
+        }
+      },
+      "EntityGainLossResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "gained": {
+                  "type": "integer",
+                  "description": "Number of people, over the past day, now talking positively about the entity who used to talk negatively about it"
+                },
+                "lost": {
+                  "type": "integer",
+                  "description": "Number of people, over the past day, now talking negatively about the entity who used to talk positively about it"
+                },
+                "entity": {
+                  "type": "string",
+                  "description": "The name of the entity which has gained/lost support"
+                }
+              }
+            }
+          }
+        }
+      },
+      "OverallSupportResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "impact": {
+                  "type": "number",
+                  "description": "Impact of this topic to the overall support base (scale = 0.0-100.0)",
+                  "examples": [
+                    1.2345
+                  ]
+                },
+                "topic": {
+                  "type": "string",
+                  "description": "The name of the topic which has gained/lost support"
+                },
+                "date": {
+                  "type": "string",
+                  "description": "Date of the support gained/lost",
+                  "format": "date-time"
+                }
+              }
+            }
+          }
+        }
+      },
+      "TopicOverallSupportResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "impact": {
+                  "type": "number",
+                  "description": "Impact of this topic to the entity's support base (scale = 0.0-100.0)",
+                  "examples": [
+                    1.2345
+                  ]
+                },
+                "topic": {
+                  "type": "string",
+                  "description": "The name of the topic which has gained/lost support"
+                }
+              }
+            }
+          }
+        }
+      },
+      "EntityOverallSupportResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "impact": {
+                  "type": "number",
+                  "description": "Impact this entity had to their support base (scale = 0.0-100.0) by the topic",
+                  "examples": [
+                    1.2345
+                  ]
+                },
+                "entity": {
+                  "type": "string",
+                  "description": "The name of the entity which has been impacted"
+                }
+              }
+            }
+          }
+        }
+      },
       "ContentResponse": {
         "type": "object",
         "properties": {
           "data": {
             "type": "array",
-            "description": "Content objects matching the parameters given",
             "items": {
               "anyOf": [
                 {
@@ -432,17 +1344,11 @@
             "properties": {
               "next": {
                 "type": "string",
-                "description": "Token for the _next_ page of search results",
-                "examples": [
-                  "e32dbef8d4967b716dffade149e4513d"
-                ]
+                "description": "Token for the _next_ page of search results"
               },
               "prev": {
                 "type": "string",
-                "description": "Token for the _previous_ page of search results",
-                "examples": [
-                  "94d29aa2ed39f2050e6e2d0b817e9f41"
-                ]
+                "description": "Token for the _previous_ page of search results"
               }
             }
           }
@@ -511,17 +1417,7 @@
             "$ref": "#/components/schemas/ContentEntityArray",
             "description": "List of Entities identified in the content"
           }
-        },
-        "required": [
-          "id",
-          "src",
-          "date",
-          "content",
-          "author",
-          "source_url",
-          "topics",
-          "entities"
-        ]
+        }
       },
       "BaseAuthorItem": {
         "type": "object",
@@ -532,14 +1428,16 @@
           "author_name": {
             "type": "string"
           }
-        },
-        "required": [
-          "author_id",
-          "author_name"
-        ]
+        }
       },
       "ContentTopicArray": {
         "type": "array",
+        "examples": [
+          [
+            "Sugar Consumption",
+            "Boycott"
+          ]
+        ],
         "uniqueItems": true,
         "items": {
           "type": "string"
@@ -547,6 +1445,12 @@
       },
       "ContentEntityArray": {
         "type": "array",
+        "examples": [
+          [
+            "Coca-Cola",
+            "Pepsi"
+          ]
+        ],
         "uniqueItems": true,
         "items": {
           "type": "string"
@@ -610,17 +1514,7 @@
             "$ref": "#/components/schemas/ContentEntityArray",
             "description": "List of Entities identified in the content"
           }
-        },
-        "required": [
-          "id",
-          "src",
-          "date",
-          "content",
-          "author",
-          "source_url",
-          "topics",
-          "entities"
-        ]
+        }
       },
       "YoutubeItem": {
         "type": "object",
@@ -669,18 +1563,7 @@
             "$ref": "#/components/schemas/ContentEntityArray",
             "description": "List of Entities identified in the content"
           }
-        },
-        "required": [
-          "id",
-          "src",
-          "date",
-          "video_id",
-          "content",
-          "author",
-          "source_url",
-          "topics",
-          "entities"
-        ]
+        }
       },
       "RedditItem": {
         "type": "object",
@@ -726,18 +1609,7 @@
             "$ref": "#/components/schemas/ContentEntityArray",
             "description": "List of Entities identified in the content"
           }
-        },
-        "required": [
-          "id",
-          "src",
-          "date",
-          "subreddit",
-          "content",
-          "author",
-          "source_url",
-          "topics",
-          "entities"
-        ]
+        }
       },
       "FacebookPostItem": {
         "type": "object",
@@ -783,18 +1655,7 @@
             "$ref": "#/components/schemas/ContentEntityArray",
             "description": "List of Entities identified in the post"
           }
-        },
-        "required": [
-          "id",
-          "src",
-          "date",
-          "page_name",
-          "content",
-          "author",
-          "source_url",
-          "topics",
-          "entities"
-        ]
+        }
       },
       "FacebookCommentItem": {
         "type": "object",
@@ -830,10 +1691,7 @@
           "source_url": {
             "type": "string",
             "description": "Link to the post where the comment was made",
-            "format": "url",
-            "examples": [
-              "https://www.facebook.com/281413854463116"
-            ]
+            "format": "url"
           },
           "topics": {
             "$ref": "#/components/schemas/ContentTopicArray",
@@ -843,18 +1701,82 @@
             "$ref": "#/components/schemas/ContentEntityArray",
             "description": "List of Entities identified in the post"
           }
-        },
-        "required": [
-          "id",
-          "src",
-          "date",
-          "page_name",
-          "content",
-          "author",
-          "source_url",
-          "topics",
-          "entities"
-        ]
+        }
+      },
+      "SentimentGraphResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "x": {
+                  "type": "string",
+                  "description": "The Date for these stats",
+                  "format": "date-time"
+                },
+                "y": {
+                  "type": "integer",
+                  "description": "The number of people talking about this entity and/or topic for this day"
+                },
+                "sent": {
+                  "type": "number",
+                  "description": "The sentiment (scale = 0.0-100.0) of all the people talking about this entity and/or topic for this day",
+                  "examples": [
+                    12.3456
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "SupportGraphResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "description": "The list of entities with their support scores",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the entity"
+                },
+                "color": {
+                  "type": "string",
+                  "description": "HEX color code for the entity (often the brand's primary color)",
+                  "examples": [
+                    "#4862a3"
+                  ]
+                },
+                "data": {
+                  "type": "array",
+                  "description": "List of the past 30 days of support scores for this entity",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "x": {
+                        "type": "string",
+                        "description": "The Date for these stats",
+                        "format": "date-time"
+                      },
+                      "y": {
+                        "type": "number",
+                        "description": "The support score (scale = 0.0-100.0) for the entity on this day",
+                        "examples": [
+                          12.3456
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
