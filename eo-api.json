@@ -1007,6 +1007,9 @@
     },
     "/support/current": {
       "get": {
+        "tags": [
+          "support"
+        ],
         "summary": "Current Support Score",
         "description": "Get a list of all the entities and each of their support scores based on the past 24 hours of content, ready for graphing",
         "operationId": "getSupportCurrent",
@@ -1081,6 +1084,9 @@
     },
     "/support/graph": {
       "get": {
+        "tags": [
+          "support"
+        ],
         "summary": "30-day Support Score",
         "description": "Get a list of all the entities and each of their support scores for the last 30 days, ready for graphing",
         "operationId": "getSupportGraph",
