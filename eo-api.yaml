@@ -1,0 +1,1186 @@
+openapi: 3.0.0
+info:
+  version: 2.0.2
+  title: API Documentation
+  description: Welcome to the API Documentation for custom endpoints created by the Eyesover Team for their customers.
+  contact:
+    url: 'https://www.eyesover.com/contact/'
+    name: Eyesover Support
+    email: support@eyesover.com
+  license:
+    url: www.eyesover.com
+    name: Private-Use-Only
+servers:
+  - url: 'https://api-custom.eyesover.com/nucleus'
+paths:
+  /entity/labels:
+    get:
+      summary: Entity Labels
+      description: |
+        Returns the entity labels used by the Eyesover system to label data
+      operationId: entityLabels
+      parameters:
+        - name: clientId
+          in: query
+          description: pass the clientId of the system for which data is being requested
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+            examples:
+              - ga-abc
+      responses:
+        '200':
+          description: List of entities the system is using to label content and stats
+          content:
+            application/json:
+              schema:
+                type: array
+                examples:
+                  - - Coca-Cola
+                    - Pepsi
+                items:
+                  type: string
+              examples:
+                default:
+                  value:
+                    - Coca-Cola
+                    - Pepsi
+        '403':
+          description: not authorized to access this resource
+      security:
+        - ApiKeyAuth: []
+      servers:
+        - url: 'https://api-custom.eyesover.com/nucleus'
+  /topic/labels:
+    get:
+      summary: Topic Labels
+      description: |
+        Returns the topic labels used by the Eyesover system to label data
+      operationId: topicLabels
+      parameters:
+        - name: clientId
+          in: query
+          description: pass the clientId of the system for which data is being requested
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+            examples:
+              - ga-abc
+      responses:
+        '200':
+          description: List of topics the system is using to label content and stats
+          content:
+            application/json:
+              schema:
+                type: array
+                examples:
+                  - - Sugar Consumption
+                    - Boycott
+                items:
+                  type: string
+              examples:
+                default:
+                  value:
+                    - Sugar Consumption
+                    - Boycott
+        '403':
+          description: not authorized to access this resource
+      security:
+        - ApiKeyAuth: []
+      servers:
+        - url: 'https://api-custom.eyesover.com/nucleus'
+  /topic/stats:
+    get:
+      summary: Topic Stats
+      description: |
+        Returns the sentiment and talking about status for every topic mentioned in this day's conversations
+      operationId: getTopicStats
+      parameters:
+        - name: clientId
+          in: query
+          description: pass the clientId of the system for which data is being requested
+          required: true
+          schema:
+            type: string
+            examples:
+              - ga-abc
+        - name: entity
+          in: query
+          description: |
+            Returns topic stats related to the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)
+          schema:
+            type: string
+            examples:
+              - Coca-Cola
+      responses:
+        '200':
+          description: List of topics with the day's sentiment and talking about stats
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopicStatsResponse'
+        '403':
+          description: not authorized to access this resource
+      security:
+        - ApiKeyAuth: []
+      servers:
+        - url: 'https://api-custom.eyesover.com/nucleus'
+  /impact/gain_loss:
+    get:
+      summary: Support Base Gain/Loss by Day
+      description: |
+        Returns the last 7 days  of impact (gains and losses of support) based on the provided topic and entity combination
+      operationId: getImpactGainLoss
+      parameters:
+        - name: clientId
+          in: query
+          description: pass the clientId of the system for which data is being requested
+          required: true
+          schema:
+            type: string
+            examples:
+              - ga-abc
+        - name: entity
+          in: query
+          description: |
+            Filter stats referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)
+          required: true
+          schema:
+            type: string
+            examples:
+              - Coca-Cola
+        - name: topic
+          in: query
+          description: |
+            Filter stats referencing the Topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)
+          required: true
+          schema:
+            type: string
+            examples:
+              - Sugar Consumption
+      responses:
+        '200':
+          description: List of the last 7 days of stats with each day's impact (gain and loss) numbers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GainLossResponse'
+        '403':
+          description: not authorized to access this resource
+        '422':
+          description: bad input parameter(s)
+      security:
+        - ApiKeyAuth: []
+      servers:
+        - url: 'https://api-custom.eyesover.com/nucleus'
+  /impact/gain_loss/topics:
+    get:
+      summary: Support Base Gain/Loss per Topic
+      description: |
+        Returns today's topics with the most impact (by gains and losses of support) based on the entity parameter
+      operationId: getTopicImpactGainLoss
+      parameters:
+        - name: clientId
+          in: query
+          description: pass the clientId of the system for which data is being requested
+          required: true
+          schema:
+            type: string
+            examples:
+              - ga-abc
+        - name: entity
+          in: query
+          description: |
+            Filter stats referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)
+          schema:
+            type: string
+            examples:
+              - Coca-Cola
+      responses:
+        '200':
+          description: List of today's topics with the most impact (by gain or loss of support)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopicGainLossResponse'
+        '403':
+          description: not authorized to access this resource
+        '422':
+          description: bad input parameter(s)
+      security:
+        - ApiKeyAuth: []
+      servers:
+        - url: 'https://api-custom.eyesover.com/nucleus'
+  /impact/gain_loss/entities:
+    get:
+      summary: Support Base Gain/Loss per Entity
+      description: |
+        Returns today's entities with the most impact (by gains and losses of support) based on the topic parameter
+      operationId: getEntityImpactGainLoss
+      parameters:
+        - name: clientId
+          in: query
+          description: pass the clientId of the system for which data is being requested
+          required: true
+          schema:
+            type: string
+            examples:
+              - ga-abc
+        - name: topic
+          in: query
+          description: |
+            Filter stats referencing the topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)
+          schema:
+            type: string
+            examples:
+              - Sugar Consumption
+      responses:
+        '200':
+          description: List of today's entities with the most impact (by gain or loss of support)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityGainLossResponse'
+        '403':
+          description: not authorized to access this resource
+        '422':
+          description: bad input parameter(s)
+      security:
+        - ApiKeyAuth: []
+      servers:
+        - url: 'https://api-custom.eyesover.com/nucleus'
+  /impact/overall_support:
+    get:
+      summary: Impact to the Support Base by Day
+      description: |
+        Returns the last 7 days of impact to the support (scale = 0.0-100.0) based on the provided topic and entity combination
+      operationId: getImpactOverallSupport
+      parameters:
+        - name: clientId
+          in: query
+          description: pass the clientId of the system for which data is being requested
+          required: true
+          schema:
+            type: string
+            examples:
+              - ga-abc
+        - name: entity
+          in: query
+          description: |
+            Filter stats referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)
+          required: true
+          schema:
+            type: string
+            examples:
+              - Coca-Cola
+        - name: topic
+          in: query
+          description: |
+            Filter stats referencing the Topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)
+          required: true
+          schema:
+            type: string
+            examples:
+              - Sugar Consumption
+      responses:
+        '200':
+          description: List of the last 7 days of stats with each day's impact to the support
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OverallSupportResponse'
+        '403':
+          description: not authorized to access this resource
+        '422':
+          description: bad input parameter(s)
+      security:
+        - ApiKeyAuth: []
+      servers:
+        - url: 'https://api-custom.eyesover.com/nucleus'
+  /impact/overall_support/topics:
+    get:
+      summary: Impact to the Support Base per Topic
+      description: |
+        Returns today's topics with the most impact to the support of the entity provided in the parameter
+      operationId: getTopicImpactOverallSupport
+      parameters:
+        - name: clientId
+          in: query
+          description: pass the clientId of the system for which data is being requested
+          required: true
+          schema:
+            type: string
+            examples:
+              - ga-abc
+        - name: entity
+          in: query
+          description: |
+            Filter stats referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)
+          schema:
+            type: string
+            examples:
+              - Coca-Cola
+      responses:
+        '200':
+          description: List of topics with the most impact to an entity's support base
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopicOverallSupportResponse'
+        '403':
+          description: not authorized to access this resource
+        '422':
+          description: bad input parameter(s)
+      security:
+        - ApiKeyAuth: []
+      servers:
+        - url: 'https://api-custom.eyesover.com/nucleus'
+  /impact/overall_support/entities:
+    get:
+      summary: Impact to the Support Base per Entity
+      description: |
+        Returns today's most impacted entities based on the topic parameter
+      operationId: getEntityImpactOverallSupport
+      parameters:
+        - name: clientId
+          in: query
+          description: pass the clientId of the system for which data is being requested
+          required: true
+          schema:
+            type: string
+            examples:
+              - ga-abc
+        - name: topic
+          in: query
+          description: |
+            Filter stats referencing the topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)
+          schema:
+            type: string
+            examples:
+              - Sugar Consumption
+      responses:
+        '200':
+          description: List of entities ordered by greatest impact to the entity's support base
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityOverallSupportResponse'
+        '403':
+          description: not authorized to access this resource
+        '422':
+          description: bad input parameter(s)
+      security:
+        - ApiKeyAuth: []
+      servers:
+        - url: 'https://api-custom.eyesover.com/nucleus'
+  /content:
+    get:
+      summary: Social Media Content
+      description: |
+        Returns the social media content that matches the search params used in the request
+      operationId: searchContent
+      parameters:
+        - name: clientId
+          in: query
+          description: pass the clientId of the system for which data is being requested
+          required: true
+          schema:
+            type: string
+            examples:
+              - ga-abc
+        - name: source
+          in: query
+          description: |
+            Returns content from the specified social media source(s). When no param are given, the default will be to return only News and Twitter sources (e.g. `source=news,twitter`)
+          style: form
+          explode: false
+          schema:
+            type: array
+            items:
+              enum:
+                - news
+                - twitter
+                - youtube
+                - facebook_post
+                - facebook_comment
+                - reddit
+        - name: since
+          in: query
+          description: |
+            Returns content created _after_ the given date. Date should be formatted as `YYYY-MM-DDTHH:MM:SS±HHMM` (or `YYYY-MM-DDTHH:MM:SSZ`).
+
+            Note: when this parameter is used, the content is returned in _reverse_ chronological order. Otherwise it is returned chronologically.
+          schema:
+            type: string
+            examples:
+              - '1970-01-01T00:00:00+0400'
+        - name: until
+          in: query
+          description: |
+            Returns content created _before_ the given date. Date should be formatted as `YYYY-MM-DDTHH:MM:SS±HHMM` (or `YYYY-MM-DDTHH:MM:SSZ`).
+          schema:
+            type: string
+            examples:
+              - '1970-01-01T00:00:00+0400'
+        - name: entity
+          in: query
+          description: |
+            Returns content referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)
+          schema:
+            type: string
+            examples:
+              - Coca-Cola
+        - name: topic
+          in: query
+          description: |
+            Returns content referencing the Topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)
+          schema:
+            type: string
+            examples:
+              - Sugar Consumption
+        - name: next
+          in: query
+          description: |
+            _For pagination only_
+
+            If the search has more content than can be returned in one call, a `next` page token will be attached to the content results.
+
+            NOTE: you MUST still provide the `clientId` parameter. No other parameters besides the `clientId` and the `next` key will be observed by the API
+          schema:
+            type: string
+        - name: prev
+          in: query
+          description: |
+            _For pagination only_
+
+            Use this parameter to page (backwards) to the previous page you were just on.
+
+            NOTE: you MUST still provide the `clientId` parameter. No other parameters besides the `clientId` and the `prev` key will be observed by the API
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of social media content matching criteria provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentResponse'
+        '403':
+          description: not authorized to access this resource
+        '422':
+          description: bad input parameter(s)
+      security:
+        - ApiKeyAuth: []
+      servers:
+        - url: 'https://api-custom.eyesover.com/nucleus'
+  /sentiment/current:
+    get:
+      summary: Current Sentiment
+      description: Get the current sentiment (aggregated from the last 24 hours of content) based on the entity and/or topic provided.
+      operationId: getSentimentCurrent
+      parameters:
+        - name: clientId
+          in: query
+          description: pass the clientId of the system for which data is being requested
+          required: true
+          schema:
+            type: string
+            examples:
+              - ga-abc
+        - name: entity
+          in: query
+          description: |
+            Filter stats referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)
+          schema:
+            type: string
+            examples:
+              - Coca-Cola
+        - name: topic
+          in: query
+          description: |
+            Filter stats referencing the Topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)
+          schema:
+            type: string
+            examples:
+              - Sugar Consumption
+      responses:
+        '200':
+          description: Sentiment based on the parameters provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sent:
+                    type: number
+                    description: The sentiment of all the people talking about this entity and/or topic over the past day (scale = 0.0-100.0)
+                    example: 12.3456
+        '403':
+          description: not authorized to access this resource
+      security:
+        - ApiKeyAuth: []
+      servers:
+        - url: 'https://api-custom.eyesover.com/nucleus'
+  /sentiment/graph:
+    get:
+      summary: Sentiment Graph
+      description: Get a list of the last 30 days of sentiment and talking about numbers based on the entity and/or topic provided ready for graphing
+      operationId: getSentimentGraph
+      parameters:
+        - name: clientId
+          in: query
+          description: pass the clientId of the system for which data is being requested
+          required: true
+          schema:
+            type: string
+            examples:
+              - ga-abc
+        - name: entity
+          in: query
+          description: |
+            Filter stats referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)
+          schema:
+            type: string
+            examples:
+              - Coca-Cola
+        - name: topic
+          in: query
+          description: |
+            Filter stats referencing the Topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)
+          schema:
+            type: string
+            examples:
+              - Sugar Consumption
+      responses:
+        '200':
+          description: List of the last 30 days of sentiment and talking about stats
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SentimentGraphResponse'
+        '403':
+          description: not authorized to access this resource
+      security:
+        - ApiKeyAuth: []
+      servers:
+        - url: 'https://api-custom.eyesover.com/nucleus'
+  /sentiment/termcloud:
+    get:
+      summary: Top Words/Term Cloud
+      description: Get a list of the top words (from the past 24 hours) used with an entity and/or topic
+      operationId: getTermCloud
+      parameters:
+        - name: clientId
+          in: query
+          description: pass the clientId of the system for which data is being requested
+          required: true
+          schema:
+            type: string
+            examples:
+              - ga-abc
+        - name: entity
+          in: query
+          description: |
+            Filter words referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)
+          schema:
+            type: string
+            examples:
+              - Coca-Cola
+        - name: topic
+          in: query
+          description: |
+            Filter words referencing the Topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)
+          schema:
+            type: string
+            examples:
+              - Sugar Consumption
+      responses:
+        '200':
+          description: List of the top words identified based on the parameters given
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        words:
+                          type: string
+                          description: The top word/phrase that was identified
+                        ta:
+                          type: integer
+                          description: Number of people talking about this topic over the past day
+                        sent:
+                          type: number
+                          description: The sentiment of all the people talking about this topic over the past day (scale = 0.0-100.0)
+                          examples:
+                            - 12.3456
+                        topic:
+                          type: string
+                          description: The topic that is being discussed
+                        category:
+                          type: string
+                          description: The broader category that the topic being discussed falls under
+        '403':
+          description: not authorized to access this resource
+      security:
+        - ApiKeyAuth: []
+      servers:
+        - url: 'https://api-custom.eyesover.com/nucleus'
+  /support/current:
+    get:
+      summary: Current Support Score
+      description: 'Get a list of all the entities and each of their support scores based on the past 24 hours of content, ready for graphing'
+      operationId: getSupportCurrent
+      parameters:
+        - name: clientId
+          in: query
+          description: pass the clientId of the system for which data is being requested
+          required: true
+          schema:
+            type: string
+            examples:
+              - ga-abc
+      responses:
+        '200':
+          description: List of the support scores for each entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        x:
+                          type: string
+                          description: Name of the entity
+                        'y':
+                          type: number
+                          description: The support score (scale = 0.0-100.0) for the entity
+                          examples:
+                            - 12.3456
+                        color:
+                          type: string
+                          description: HEX color code for the entity (often the brand's primary color)
+                          examples:
+                            - '#4862a3'
+        '403':
+          description: not authorized to access this resource
+      security:
+        - ApiKeyAuth: []
+      servers:
+        - url: 'https://api-custom.eyesover.com/nucleus'
+  /support/graph:
+    get:
+      summary: 30-day Support Score
+      description: 'Get a list of all the entities and each of their support scores for the last 30 days, ready for graphing'
+      operationId: getSupportGraph
+      parameters:
+        - name: clientId
+          in: query
+          description: pass the clientId of the system for which data is being requested
+          required: true
+          schema:
+            type: string
+            examples:
+              - ga-abc
+      responses:
+        '200':
+          description: List of the last 30 days worth of support scores for each entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportGraphResponse'
+        '403':
+          description: not authorized to access this resource
+      security:
+        - ApiKeyAuth: []
+      servers:
+        - url: 'https://api-custom.eyesover.com/nucleus'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: x-api-key
+      in: header
+  schemas:
+    TopicStatsResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            overall:
+              type: object
+              description: Overall stats based on the parameters provided
+              properties:
+                entity:
+                  type: string
+                  description: Name of the entity provided in the parameters (or 'All Entities')
+                ta:
+                  type: integer
+                  description: Number of people talking about this entity over the past day
+                sent:
+                  type: number
+                  description: The sentiment of all the people talking about this entity over the past day (scale = 0.0-100.0)
+                  examples:
+                    - 12.3456
+            topics:
+              type: array
+              items:
+                type: object
+                properties:
+                  ta:
+                    type: integer
+                    description: 'Number of people talking about this topic (and entity, if provided) over the past day'
+                  sent:
+                    type: number
+                    description: 'The sentiment of all the people talking about this topic (and entity, if provided) over the past day (scale = 0.0-100.0)'
+                    examples:
+                      - 12.3456
+                  topic:
+                    type: string
+                    description: The topic that is being discussed
+                  category:
+                    type: string
+                    description: The broader category that the topic being discussed falls under
+    GainLossResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              gained:
+                type: integer
+                description: Number of people talking positively about the topic who used to talk negatively about it
+              lost:
+                type: integer
+                description: Number of people talking negatively about the topic who used to talk positively about it
+              topic:
+                type: string
+                description: The name of the topic which has gained/lost support
+              date:
+                type: string
+                description: Date of the support gained/lost
+                format: date-time
+    TopicGainLossResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              gained:
+                type: integer
+                description: 'Number of people, over the past day, now talking positively about the topic who used to talk negatively about it'
+              lost:
+                type: integer
+                description: 'Number of people, over the past day, now talking negatively about the topic who used to talk positively about it'
+              topic:
+                type: string
+                description: The name of the topic which has gained/lost support
+    EntityGainLossResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              gained:
+                type: integer
+                description: 'Number of people, over the past day, now talking positively about the entity who used to talk negatively about it'
+              lost:
+                type: integer
+                description: 'Number of people, over the past day, now talking negatively about the entity who used to talk positively about it'
+              entity:
+                type: string
+                description: The name of the entity which has gained/lost support
+    OverallSupportResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              impact:
+                type: number
+                description: Impact of this topic to the overall support base (scale = 0.0-100.0)
+                examples:
+                  - 1.2345
+              topic:
+                type: string
+                description: The name of the topic which has gained/lost support
+              date:
+                type: string
+                description: Date of the support gained/lost
+                format: date-time
+    TopicOverallSupportResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              impact:
+                type: number
+                description: Impact of this topic to the entity's support base (scale = 0.0-100.0)
+                examples:
+                  - 1.2345
+              topic:
+                type: string
+                description: The name of the topic which has gained/lost support
+    EntityOverallSupportResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              impact:
+                type: number
+                description: Impact this entity had to their support base (scale = 0.0-100.0) by the topic
+                examples:
+                  - 1.2345
+              entity:
+                type: string
+                description: The name of the entity which has been impacted
+    ContentResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/NewsItem'
+              - $ref: '#/components/schemas/TwitterItem'
+              - $ref: '#/components/schemas/YoutubeItem'
+              - $ref: '#/components/schemas/RedditItem'
+              - $ref: '#/components/schemas/FacebookPostItem'
+              - $ref: '#/components/schemas/FacebookCommentItem'
+        pagination:
+          type: object
+          properties:
+            next:
+              type: string
+              description: Token for the _next_ page of search results
+            prev:
+              type: string
+              description: Token for the _previous_ page of search results
+    NewsItem:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique ID representing this particular news article
+        src:
+          type: string
+          description: Social media source
+          examples:
+            - news
+        date:
+          type: string
+          description: Date content was published
+          format: date-time
+        title:
+          type: string
+          description: Title of the news article
+        content:
+          type: string
+          description: Summary of the news article
+        author:
+          type: object
+          description: Details about the publisher/author of the news article
+          properties:
+            url:
+              type: string
+              description: link to the Publisher's home page
+          allOf:
+            - $ref: '#/components/schemas/BaseAuthorItem'
+            - type: object
+        source_url:
+          type: string
+          description: Link to the news article
+          format: url
+        img_url:
+          type: string
+          description: 'Link to the news article''s main image, if one of was found'
+          format: url
+        topics:
+          $ref: '#/components/schemas/ContentTopicArray'
+          description: List of Topics identified in the content
+        entities:
+          $ref: '#/components/schemas/ContentEntityArray'
+          description: List of Entities identified in the content
+    BaseAuthorItem:
+      type: object
+      properties:
+        author_id:
+          type: string
+        author_name:
+          type: string
+    ContentTopicArray:
+      type: array
+      examples:
+        - - Sugar Consumption
+          - Boycott
+      uniqueItems: true
+      items:
+        type: string
+    ContentEntityArray:
+      type: array
+      examples:
+        - - Coca-Cola
+          - Pepsi
+      uniqueItems: true
+      items:
+        type: string
+    TwitterItem:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the Tweet from Twitter's API
+          format: long
+        src:
+          type: string
+          description: Social media source
+          examples:
+            - twitter
+        date:
+          type: string
+          description: Date content was published
+          format: date-time
+        content:
+          type: string
+          description: Tweet's content
+        author:
+          type: object
+          description: Details about the Tweet author
+          properties:
+            username:
+              type: string
+              description: handle/username of the Tweet's author
+          required:
+            - username
+          allOf:
+            - $ref: '#/components/schemas/BaseAuthorItem'
+            - type: object
+        source_url:
+          type: string
+          description: Link to the tweet
+          format: url
+        topics:
+          $ref: '#/components/schemas/ContentTopicArray'
+          description: List of Topics identified in the content
+        entities:
+          $ref: '#/components/schemas/ContentEntityArray'
+          description: List of Entities identified in the content
+    YoutubeItem:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique ID representing this Youtube comment
+        src:
+          type: string
+          description: Social media source
+          examples:
+            - youtube
+        date:
+          type: string
+          description: Date content was published
+          format: date-time
+        video_id:
+          type: string
+          description: Youtube's API ID for this video where this comment came from
+        content:
+          type: string
+          description: Content of the Youtube comment
+          examples:
+            - 'And Biden encouraging all the migrants to go through the dangerous journey through central America and Mexico. I am sure Desantis treatment is A MILLION times better than […].'
+        author:
+          $ref: '#/components/schemas/BaseAuthorItem'
+          description: Details about the author of this Youtube comment
+        source_url:
+          type: string
+          description: Link to the Youtube comment
+          format: url
+        topics:
+          $ref: '#/components/schemas/ContentTopicArray'
+          description: List of Topics identified in the content
+        entities:
+          $ref: '#/components/schemas/ContentEntityArray'
+          description: List of Entities identified in the content
+    RedditItem:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique ID representing this Reddit comment
+        src:
+          type: string
+          description: Social media source
+          examples:
+            - reddit
+        date:
+          type: string
+          description: Date content was published
+          format: date-time
+        subreddit:
+          type: string
+          description: Name of the subreddit where this comment came from
+        content:
+          type: string
+          description: Content of the Reddit comment
+        author:
+          $ref: '#/components/schemas/BaseAuthorItem'
+          description: Details about the author of this Reddit comment
+        source_url:
+          type: string
+          description: Link to the Reddit comment
+          format: url
+        topics:
+          $ref: '#/components/schemas/ContentTopicArray'
+          description: List of Topics identified in the content
+        entities:
+          $ref: '#/components/schemas/ContentEntityArray'
+          description: List of Entities identified in the content
+    FacebookPostItem:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique ID representing this Facebook post
+        src:
+          type: string
+          description: Social media source
+          examples:
+            - facebook_post
+        date:
+          type: string
+          description: Date content was published
+          format: date-time
+        page_name:
+          type: string
+          description: Name of the Facebook Page where this post came from
+        content:
+          type: string
+          description: Content of the post
+        author:
+          $ref: '#/components/schemas/BaseAuthorItem'
+          description: Details about the author of this post
+        source_url:
+          type: string
+          description: Link to the post
+          format: url
+        topics:
+          $ref: '#/components/schemas/ContentTopicArray'
+          description: List of Topics identified in the post
+        entities:
+          $ref: '#/components/schemas/ContentEntityArray'
+          description: List of Entities identified in the post
+    FacebookCommentItem:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique ID representing this Facebook comment
+        src:
+          type: string
+          description: Social media source
+          examples:
+            - facebook_comment
+        date:
+          type: string
+          description: Date content was published
+          format: date-time
+        page_name:
+          type: string
+          description: Name of the Facebook Page where this comment came from
+        content:
+          type: string
+          description: Content of the comment
+        author:
+          $ref: '#/components/schemas/BaseAuthorItem'
+          description: 'Details about the author of this comment. Note: if `author_name=Facebook User` it is because Facebook as not provided us with the actual ID or Name of the user.'
+        source_url:
+          type: string
+          description: Link to the post where the comment was made
+          format: url
+        topics:
+          $ref: '#/components/schemas/ContentTopicArray'
+          description: List of Topics identified in the post
+        entities:
+          $ref: '#/components/schemas/ContentEntityArray'
+          description: List of Entities identified in the post
+    SentimentGraphResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              x:
+                type: string
+                description: The Date for these stats
+                format: date-time
+              'y':
+                type: integer
+                description: The number of people talking about this entity and/or topic for this day
+              sent:
+                type: number
+                description: The sentiment (scale = 0.0-100.0) of all the people talking about this entity and/or topic for this day
+                examples:
+                  - 12.3456
+    SupportGraphResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          description: The list of entities with their support scores
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the entity
+              color:
+                type: string
+                description: HEX color code for the entity (often the brand's primary color)
+                examples:
+                  - '#4862a3'
+              data:
+                type: array
+                description: List of the past 30 days of support scores for this entity
+                items:
+                  type: object
+                  properties:
+                    x:
+                      type: string
+                      description: The Date for these stats
+                      format: date-time
+                    'y':
+                      type: number
+                      description: The support score (scale = 0.0-100.0) for the entity on this day
+                      examples:
+                        - 12.3456
+security:
+  - ApiKeyAuth: []
