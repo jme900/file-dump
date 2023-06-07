@@ -22,6 +22,9 @@
   "paths": {
     "/entity/labels": {
       "get": {
+        "tags": [
+          "labels"
+        ],
         "summary": "Entity Labels",
         "description": "Returns the entity labels used by the Eyesover system to label data\n",
         "operationId": "entityLabels",
@@ -87,6 +90,9 @@
     },
     "/topic/labels": {
       "get": {
+        "tags": [
+          "labels"
+        ],
         "summary": "Topic Labels",
         "description": "Returns the topic labels used by the Eyesover system to label data\n",
         "operationId": "topicLabels",
@@ -152,6 +158,9 @@
     },
     "/topic/stats": {
       "get": {
+        "tags": [
+          "sentiment"
+        ],
         "summary": "Topic Stats",
         "description": "Returns the sentiment and talking about status for every topic mentioned in this day's conversations\n",
         "operationId": "getTopicStats",
@@ -209,6 +218,9 @@
     },
     "/impact/gain_loss": {
       "get": {
+        "tags": [
+          "impact"
+        ],
         "summary": "Support Base Gain/Loss by Day",
         "description": "Returns the last 7 days  of impact (gains and losses of support) based on the provided topic and entity combination\n",
         "operationId": "getImpactGainLoss",
@@ -282,6 +294,9 @@
     },
     "/impact/gain_loss/topics": {
       "get": {
+        "tags": [
+          "impact"
+        ],
         "summary": "Support Base Gain/Loss per Topic",
         "description": "Returns today's topics with the most impact (by gains and losses of support) based on the entity parameter\n",
         "operationId": "getTopicImpactGainLoss",
@@ -342,6 +357,9 @@
     },
     "/impact/gain_loss/entities": {
       "get": {
+        "tags": [
+          "impact"
+        ],
         "summary": "Support Base Gain/Loss per Entity",
         "description": "Returns today's entities with the most impact (by gains and losses of support) based on the topic parameter\n",
         "operationId": "getEntityImpactGainLoss",
@@ -402,6 +420,9 @@
     },
     "/impact/overall_support": {
       "get": {
+        "tags": [
+          "impact"
+        ],
         "summary": "Impact to the Support Base by Day",
         "description": "Returns the last 7 days of impact to the support (scale = 0.0-100.0) based on the provided topic and entity combination\n",
         "operationId": "getImpactOverallSupport",
@@ -475,6 +496,9 @@
     },
     "/impact/overall_support/topics": {
       "get": {
+        "tags": [
+          "impact"
+        ],
         "summary": "Impact to the Support Base per Topic",
         "description": "Returns today's topics with the most impact to the support of the entity provided in the parameter\n",
         "operationId": "getTopicImpactOverallSupport",
@@ -535,6 +559,9 @@
     },
     "/impact/overall_support/entities": {
       "get": {
+        "tags": [
+          "impact"
+        ],
         "summary": "Impact to the Support Base per Entity",
         "description": "Returns today's most impacted entities based on the topic parameter\n",
         "operationId": "getEntityImpactOverallSupport",
@@ -595,6 +622,9 @@
     },
     "/content": {
       "get": {
+        "tags": [
+          "content"
+        ],
         "summary": "Social Media Content",
         "description": "Returns the social media content that matches the search params used in the request\n",
         "operationId": "searchContent",
@@ -724,6 +754,9 @@
     },
     "/sentiment/current": {
       "get": {
+        "tags": [
+          "sentiment"
+        ],
         "summary": "Current Sentiment",
         "description": "Get the current sentiment (aggregated from the last 24 hours of content) based on the entity and/or topic provided.",
         "operationId": "getSentimentCurrent",
@@ -799,6 +832,9 @@
     },
     "/sentiment/graph": {
       "get": {
+        "tags": [
+          "sentiment"
+        ],
         "summary": "Sentiment Graph",
         "description": "Get a list of the last 30 days of sentiment and talking about numbers based on the entity and/or topic provided ready for graphing",
         "operationId": "getSentimentGraph",
@@ -867,6 +903,9 @@
     },
     "/sentiment/termcloud": {
       "get": {
+        "tags": [
+          "sentiment"
+        ],
         "summary": "Top Words/Term Cloud",
         "description": "Get a list of the top words (from the past 24 hours) used with an entity and/or topic",
         "operationId": "getTermCloud",
@@ -1087,6 +1126,28 @@
       }
     }
   },
+  "tags": [
+    {
+      "name": "labels",
+      "description": "Labels used by the system to tagging content and stats"
+    },
+    {
+      "name": "sentiment",
+      "description": "Sentiment-based stats"
+    },
+    {
+      "name": "impact",
+      "description": "Impact-based stats"
+    },
+    {
+      "name": "support",
+      "description": "Support score"
+    },
+    {
+      "name": "content",
+      "description": "Social media content"
+    }
+  ],
   "components": {
     "securitySchemes": {
       "ApiKeyAuth": {
