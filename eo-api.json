@@ -16,7 +16,7 @@
   },
   "servers": [
     {
-      "url": "https://api-custom.eyesover.com/nucleus"
+      "url": "https://api-custom.eyesover.com/backend/custom"
     }
   ],
   "paths": {
@@ -38,9 +38,7 @@
             "explode": true,
             "schema": {
               "type": "string",
-              "examples": [
-                "ga-abc"
-              ]
+              "example": "ga-abc"
             }
           }
         ],
@@ -51,15 +49,13 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "examples": [
-                    [
-                      "Coca-Cola",
-                      "Pepsi"
-                    ]
-                  ],
                   "items": {
                     "type": "string"
-                  }
+                  },
+                  "example": [
+                    "Coca-Cola",
+                    "Pepsi"
+                  ]
                 },
                 "examples": {
                   "default": {
@@ -76,14 +72,9 @@
             "description": "not authorized to access this resource"
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "servers": [
           {
-            "url": "https://api-custom.eyesover.com/nucleus"
+            "url": "https://api-custom.eyesover.com/backend/custom"
           }
         ]
       }
@@ -106,9 +97,7 @@
             "explode": true,
             "schema": {
               "type": "string",
-              "examples": [
-                "ga-abc"
-              ]
+              "example": "ga-abc"
             }
           }
         ],
@@ -119,15 +108,13 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "examples": [
-                    [
-                      "Sugar Consumption",
-                      "Boycott"
-                    ]
-                  ],
                   "items": {
                     "type": "string"
-                  }
+                  },
+                  "example": [
+                    "Sugar Consumption",
+                    "Boycott"
+                  ]
                 },
                 "examples": {
                   "default": {
@@ -144,14 +131,9 @@
             "description": "not authorized to access this resource"
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "servers": [
           {
-            "url": "https://api-custom.eyesover.com/nucleus"
+            "url": "https://api-custom.eyesover.com/backend/custom"
           }
         ]
       }
@@ -172,9 +154,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "examples": [
-                "ga-abc"
-              ]
+              "example": "ga-abc"
             }
           },
           {
@@ -183,9 +163,7 @@
             "description": "Returns topic stats related to the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)\n",
             "schema": {
               "type": "string",
-              "examples": [
-                "Coca-Cola"
-              ]
+              "example": "Coca-Cola"
             }
           }
         ],
@@ -204,14 +182,9 @@
             "description": "not authorized to access this resource"
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "servers": [
           {
-            "url": "https://api-custom.eyesover.com/nucleus"
+            "url": "https://api-custom.eyesover.com/backend/custom"
           }
         ]
       }
@@ -232,9 +205,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "examples": [
-                "ga-abc"
-              ]
+              "example": "ga-abc"
             }
           },
           {
@@ -244,9 +215,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "examples": [
-                "Coca-Cola"
-              ]
+              "example": "Coca-Cola"
             }
           },
           {
@@ -256,9 +225,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "examples": [
-                "Sugar Consumption"
-              ]
+              "example": "Sugar Consumption"
             }
           }
         ],
@@ -280,14 +247,9 @@
             "description": "bad input parameter(s)"
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "servers": [
           {
-            "url": "https://api-custom.eyesover.com/nucleus"
+            "url": "https://api-custom.eyesover.com/backend/custom"
           }
         ]
       }
@@ -308,9 +270,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "examples": [
-                "ga-abc"
-              ]
+              "example": "ga-abc"
             }
           },
           {
@@ -319,9 +279,7 @@
             "description": "Filter stats referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)\n",
             "schema": {
               "type": "string",
-              "examples": [
-                "Coca-Cola"
-              ]
+              "example": "Coca-Cola"
             }
           }
         ],
@@ -343,14 +301,9 @@
             "description": "bad input parameter(s)"
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "servers": [
           {
-            "url": "https://api-custom.eyesover.com/nucleus"
+            "url": "https://api-custom.eyesover.com/backend/custom"
           }
         ]
       }
@@ -371,9 +324,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "examples": [
-                "ga-abc"
-              ]
+              "example": "ga-abc"
             }
           },
           {
@@ -382,9 +333,7 @@
             "description": "Filter stats referencing the topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)\n",
             "schema": {
               "type": "string",
-              "examples": [
-                "Sugar Consumption"
-              ]
+              "example": "Sugar Consumption"
             }
           }
         ],
@@ -406,14 +355,9 @@
             "description": "bad input parameter(s)"
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "servers": [
           {
-            "url": "https://api-custom.eyesover.com/nucleus"
+            "url": "https://api-custom.eyesover.com/backend/custom"
           }
         ]
       }
@@ -434,9 +378,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "examples": [
-                "ga-abc"
-              ]
+              "example": "ga-abc"
             }
           },
           {
@@ -446,9 +388,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "examples": [
-                "Coca-Cola"
-              ]
+              "example": "Coca-Cola"
             }
           },
           {
@@ -458,9 +398,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "examples": [
-                "Sugar Consumption"
-              ]
+              "example": "Sugar Consumption"
             }
           }
         ],
@@ -482,14 +420,9 @@
             "description": "bad input parameter(s)"
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "servers": [
           {
-            "url": "https://api-custom.eyesover.com/nucleus"
+            "url": "https://api-custom.eyesover.com/backend/custom"
           }
         ]
       }
@@ -510,9 +443,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "examples": [
-                "ga-abc"
-              ]
+              "example": "ga-abc"
             }
           },
           {
@@ -521,9 +452,7 @@
             "description": "Filter stats referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)\n",
             "schema": {
               "type": "string",
-              "examples": [
-                "Coca-Cola"
-              ]
+              "example": "Coca-Cola"
             }
           }
         ],
@@ -545,14 +474,9 @@
             "description": "bad input parameter(s)"
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "servers": [
           {
-            "url": "https://api-custom.eyesover.com/nucleus"
+            "url": "https://api-custom.eyesover.com/backend/custom"
           }
         ]
       }
@@ -573,9 +497,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "examples": [
-                "ga-abc"
-              ]
+              "example": "ga-abc"
             }
           },
           {
@@ -584,9 +506,7 @@
             "description": "Filter stats referencing the topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)\n",
             "schema": {
               "type": "string",
-              "examples": [
-                "Sugar Consumption"
-              ]
+              "example": "Sugar Consumption"
             }
           }
         ],
@@ -608,14 +528,9 @@
             "description": "bad input parameter(s)"
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "servers": [
           {
-            "url": "https://api-custom.eyesover.com/nucleus"
+            "url": "https://api-custom.eyesover.com/backend/custom"
           }
         ]
       }
@@ -636,9 +551,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "examples": [
-                "ga-abc"
-              ]
+              "example": "ga-abc"
             }
           },
           {
@@ -667,9 +580,7 @@
             "description": "Returns content created _after_ the given date. Date should be formatted as `YYYY-MM-DDTHH:MM:SS±HHMM` (or `YYYY-MM-DDTHH:MM:SSZ`).\n\nNote: when this parameter is used, the content is returned in _reverse_ chronological order. Otherwise it is returned chronologically.\n",
             "schema": {
               "type": "string",
-              "examples": [
-                "1970-01-01T00:00:00+0400"
-              ]
+              "example": "1970-01-01T00:00:00+0400"
             }
           },
           {
@@ -678,9 +589,7 @@
             "description": "Returns content created _before_ the given date. Date should be formatted as `YYYY-MM-DDTHH:MM:SS±HHMM` (or `YYYY-MM-DDTHH:MM:SSZ`).\n",
             "schema": {
               "type": "string",
-              "examples": [
-                "1970-01-01T00:00:00+0400"
-              ]
+              "example": "1970-01-01T00:00:00+0400"
             }
           },
           {
@@ -689,9 +598,7 @@
             "description": "Returns content referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)\n",
             "schema": {
               "type": "string",
-              "examples": [
-                "Coca-Cola"
-              ]
+              "example": "Coca-Cola"
             }
           },
           {
@@ -700,9 +607,7 @@
             "description": "Returns content referencing the Topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)\n",
             "schema": {
               "type": "string",
-              "examples": [
-                "Sugar Consumption"
-              ]
+              "example": "Sugar Consumption"
             }
           },
           {
@@ -740,14 +645,9 @@
             "description": "bad input parameter(s)"
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "servers": [
           {
-            "url": "https://api-custom.eyesover.com/nucleus"
+            "url": "https://api-custom.eyesover.com/backend/custom"
           }
         ]
       }
@@ -768,9 +668,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "examples": [
-                "ga-abc"
-              ]
+              "example": "ga-abc"
             }
           },
           {
@@ -779,9 +677,7 @@
             "description": "Filter stats referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)\n",
             "schema": {
               "type": "string",
-              "examples": [
-                "Coca-Cola"
-              ]
+              "example": "Coca-Cola"
             }
           },
           {
@@ -790,9 +686,7 @@
             "description": "Filter stats referencing the Topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)\n",
             "schema": {
               "type": "string",
-              "examples": [
-                "Sugar Consumption"
-              ]
+              "example": "Sugar Consumption"
             }
           }
         ],
@@ -818,14 +712,9 @@
             "description": "not authorized to access this resource"
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "servers": [
           {
-            "url": "https://api-custom.eyesover.com/nucleus"
+            "url": "https://api-custom.eyesover.com/backend/custom"
           }
         ]
       }
@@ -846,9 +735,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "examples": [
-                "ga-abc"
-              ]
+              "example": "ga-abc"
             }
           },
           {
@@ -857,9 +744,7 @@
             "description": "Filter stats referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)\n",
             "schema": {
               "type": "string",
-              "examples": [
-                "Coca-Cola"
-              ]
+              "example": "Coca-Cola"
             }
           },
           {
@@ -868,9 +753,7 @@
             "description": "Filter stats referencing the Topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)\n",
             "schema": {
               "type": "string",
-              "examples": [
-                "Sugar Consumption"
-              ]
+              "example": "Sugar Consumption"
             }
           }
         ],
@@ -889,14 +772,9 @@
             "description": "not authorized to access this resource"
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "servers": [
           {
-            "url": "https://api-custom.eyesover.com/nucleus"
+            "url": "https://api-custom.eyesover.com/backend/custom"
           }
         ]
       }
@@ -917,9 +795,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "examples": [
-                "ga-abc"
-              ]
+              "example": "ga-abc"
             }
           },
           {
@@ -928,9 +804,7 @@
             "description": "Filter words referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)\n",
             "schema": {
               "type": "string",
-              "examples": [
-                "Coca-Cola"
-              ]
+              "example": "Coca-Cola"
             }
           },
           {
@@ -939,9 +813,7 @@
             "description": "Filter words referencing the Topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)\n",
             "schema": {
               "type": "string",
-              "examples": [
-                "Sugar Consumption"
-              ]
+              "example": "Sugar Consumption"
             }
           }
         ],
@@ -969,9 +841,7 @@
                           "sent": {
                             "type": "number",
                             "description": "The sentiment of all the people talking about this topic over the past day (scale = 0.0-100.0)",
-                            "examples": [
-                              12.3456
-                            ]
+                            "example": 12.3456
                           },
                           "topic": {
                             "type": "string",
@@ -993,14 +863,9 @@
             "description": "not authorized to access this resource"
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "servers": [
           {
-            "url": "https://api-custom.eyesover.com/nucleus"
+            "url": "https://api-custom.eyesover.com/backend/custom"
           }
         ]
       }
@@ -1021,9 +886,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "examples": [
-                "ga-abc"
-              ]
+              "example": "ga-abc"
             }
           }
         ],
@@ -1047,16 +910,12 @@
                           "y": {
                             "type": "number",
                             "description": "The support score (scale = 0.0-100.0) for the entity",
-                            "examples": [
-                              12.3456
-                            ]
+                            "example": 12.3456
                           },
                           "color": {
                             "type": "string",
                             "description": "HEX color code for the entity (often the brand's primary color)",
-                            "examples": [
-                              "#4862a3"
-                            ]
+                            "example": "#4862a3"
                           }
                         }
                       }
@@ -1070,14 +929,9 @@
             "description": "not authorized to access this resource"
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "servers": [
           {
-            "url": "https://api-custom.eyesover.com/nucleus"
+            "url": "https://api-custom.eyesover.com/backend/custom"
           }
         ]
       }
@@ -1098,9 +952,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "examples": [
-                "ga-abc"
-              ]
+              "example": "ga-abc"
             }
           }
         ],
@@ -1119,14 +971,9 @@
             "description": "not authorized to access this resource"
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
         "servers": [
           {
-            "url": "https://api-custom.eyesover.com/nucleus"
+            "url": "https://api-custom.eyesover.com/backend/custom"
           }
         ]
       }
@@ -1156,10 +1003,16 @@
   ],
   "components": {
     "securitySchemes": {
-      "ApiKeyAuth": {
-        "type": "apiKey",
-        "name": "x-api-key",
-        "in": "header"
+      "API Auth": {
+        "type": "oauth2",
+        "description": "Use the API App ID/Secret keys generated, when creating an Eyesover API APP Client, to retrieve an `access_token` from the **token** URL. \n\n\nRetrieving the `access_token` from the **token** URL:\n- Method: **POST**\n- Content-Type: **application/x-www-form-urlencoded**\n- Authorization: **Basic Base64Encode(appID:appSecret)**\n- Post Field: **grant_type:client_credentials**\n```\n$AUTH_HEADER = base64_encode($appID . ':' . $appSecret) // <--- note the ':'\n$headers = array(\n  'Content-Type:application/x-www-form-urlencoded',\n  'Authorization: Basic '. $AUTH_HEADER\n);\n```\nThe response will be a `json` document containing your `access_token`\n```\n{\n    \"access_token\": \"eyJraWQiOiJPVzhDQXp4amJr...\",\n    \"expires_in\": 3600,\n    \"token_type\": \"Bearer\"\n}\n```\n> You must use this **access_token** in the **Authorization** header of each API request as a **Bearer** token: Example: `{Authorization: Bearer access_token}`",
+        "flows": {
+          "clientCredentials": {
+            "refreshUrl": "",
+            "scopes": {},
+            "tokenUrl": "https://auth.eyesover.com/oauth2/token"
+          }
+        }
       }
     },
     "schemas": {
@@ -1184,9 +1037,7 @@
                   "sent": {
                     "type": "number",
                     "description": "The sentiment of all the people talking about this entity over the past day (scale = 0.0-100.0)",
-                    "examples": [
-                      12.3456
-                    ]
+                    "example": 12.3456
                   }
                 }
               },
@@ -1202,9 +1053,7 @@
                     "sent": {
                       "type": "number",
                       "description": "The sentiment of all the people talking about this topic (and entity, if provided) over the past day (scale = 0.0-100.0)",
-                      "examples": [
-                        12.3456
-                      ]
+                      "example": 12.3456
                     },
                     "topic": {
                       "type": "string",
@@ -1312,9 +1161,7 @@
                 "impact": {
                   "type": "number",
                   "description": "Impact of this topic to the overall support base (scale = 0.0-100.0)",
-                  "examples": [
-                    1.2345
-                  ]
+                  "example": 1.2345
                 },
                 "topic": {
                   "type": "string",
@@ -1341,9 +1188,7 @@
                 "impact": {
                   "type": "number",
                   "description": "Impact of this topic to the entity's support base (scale = 0.0-100.0)",
-                  "examples": [
-                    1.2345
-                  ]
+                  "example": 1.2345
                 },
                 "topic": {
                   "type": "string",
@@ -1365,9 +1210,7 @@
                 "impact": {
                   "type": "number",
                   "description": "Impact this entity had to their support base (scale = 0.0-100.0) by the topic",
-                  "examples": [
-                    1.2345
-                  ]
+                  "example": 1.2345
                 },
                 "entity": {
                   "type": "string",
@@ -1431,9 +1274,7 @@
           "src": {
             "type": "string",
             "description": "Social media source",
-            "examples": [
-              "news"
-            ]
+            "example": "news"
           },
           "date": {
             "type": "string",
@@ -1499,29 +1340,25 @@
       },
       "ContentTopicArray": {
         "type": "array",
-        "examples": [
-          [
-            "Sugar Consumption",
-            "Boycott"
-          ]
-        ],
         "uniqueItems": true,
         "items": {
           "type": "string"
-        }
+        },
+        "example": [
+          "Sugar Consumption",
+          "Boycott"
+        ]
       },
       "ContentEntityArray": {
         "type": "array",
-        "examples": [
-          [
-            "Coca-Cola",
-            "Pepsi"
-          ]
-        ],
         "uniqueItems": true,
         "items": {
           "type": "string"
-        }
+        },
+        "example": [
+          "Coca-Cola",
+          "Pepsi"
+        ]
       },
       "TwitterItem": {
         "type": "object",
@@ -1534,9 +1371,7 @@
           "src": {
             "type": "string",
             "description": "Social media source",
-            "examples": [
-              "twitter"
-            ]
+            "example": "twitter"
           },
           "date": {
             "type": "string",
@@ -1593,9 +1428,7 @@
           "src": {
             "type": "string",
             "description": "Social media source",
-            "examples": [
-              "youtube"
-            ]
+            "example": "youtube"
           },
           "date": {
             "type": "string",
@@ -1609,9 +1442,7 @@
           "content": {
             "type": "string",
             "description": "Content of the Youtube comment",
-            "examples": [
-              "And Biden encouraging all the migrants to go through the dangerous journey through central America and Mexico. I am sure Desantis treatment is A MILLION times better than […]."
-            ]
+            "example": "And Biden encouraging all the migrants to go through the dangerous journey through central America and Mexico. I am sure Desantis treatment is A MILLION times better than […]."
           },
           "author": {
             "$ref": "#/components/schemas/BaseAuthorItem",
@@ -1642,9 +1473,7 @@
           "src": {
             "type": "string",
             "description": "Social media source",
-            "examples": [
-              "reddit"
-            ]
+            "example": "reddit"
           },
           "date": {
             "type": "string",
@@ -1688,9 +1517,7 @@
           "src": {
             "type": "string",
             "description": "Social media source",
-            "examples": [
-              "facebook_post"
-            ]
+            "example": "facebook_post"
           },
           "date": {
             "type": "string",
@@ -1734,9 +1561,7 @@
           "src": {
             "type": "string",
             "description": "Social media source",
-            "examples": [
-              "facebook_comment"
-            ]
+            "example": "facebook_comment"
           },
           "date": {
             "type": "string",
@@ -1790,9 +1615,7 @@
                 "sent": {
                   "type": "number",
                   "description": "The sentiment (scale = 0.0-100.0) of all the people talking about this entity and/or topic for this day",
-                  "examples": [
-                    12.3456
-                  ]
+                  "example": 12.3456
                 }
               }
             }
@@ -1815,9 +1638,7 @@
                 "color": {
                   "type": "string",
                   "description": "HEX color code for the entity (often the brand's primary color)",
-                  "examples": [
-                    "#4862a3"
-                  ]
+                  "example": "#4862a3"
                 },
                 "data": {
                   "type": "array",
@@ -1833,9 +1654,7 @@
                       "y": {
                         "type": "number",
                         "description": "The support score (scale = 0.0-100.0) for the entity on this day",
-                        "examples": [
-                          12.3456
-                        ]
+                        "example": 12.3456
                       }
                     }
                   }
@@ -1846,10 +1665,5 @@
         }
       }
     }
-  },
-  "security": [
-    {
-      "ApiKeyAuth": []
-    }
-  ]
+  }
 }
