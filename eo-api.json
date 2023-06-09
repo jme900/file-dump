@@ -72,6 +72,11 @@
             "description": "not authorized to access this resource"
           }
         },
+        "security": [
+          {
+            "API Auth": []
+          }
+        ],
         "servers": [
           {
             "url": "https://api-custom.eyesover.com/backend/custom"
@@ -131,6 +136,11 @@
             "description": "not authorized to access this resource"
           }
         },
+        "security": [
+          {
+            "API Auth": []
+          }
+        ],
         "servers": [
           {
             "url": "https://api-custom.eyesover.com/backend/custom"
@@ -182,6 +192,11 @@
             "description": "not authorized to access this resource"
           }
         },
+        "security": [
+          {
+            "API Auth": []
+          }
+        ],
         "servers": [
           {
             "url": "https://api-custom.eyesover.com/backend/custom"
@@ -247,6 +262,11 @@
             "description": "bad input parameter(s)"
           }
         },
+        "security": [
+          {
+            "API Auth": []
+          }
+        ],
         "servers": [
           {
             "url": "https://api-custom.eyesover.com/backend/custom"
@@ -301,6 +321,11 @@
             "description": "bad input parameter(s)"
           }
         },
+        "security": [
+          {
+            "API Auth": []
+          }
+        ],
         "servers": [
           {
             "url": "https://api-custom.eyesover.com/backend/custom"
@@ -355,6 +380,11 @@
             "description": "bad input parameter(s)"
           }
         },
+        "security": [
+          {
+            "API Auth": []
+          }
+        ],
         "servers": [
           {
             "url": "https://api-custom.eyesover.com/backend/custom"
@@ -420,6 +450,11 @@
             "description": "bad input parameter(s)"
           }
         },
+        "security": [
+          {
+            "API Auth": []
+          }
+        ],
         "servers": [
           {
             "url": "https://api-custom.eyesover.com/backend/custom"
@@ -474,6 +509,11 @@
             "description": "bad input parameter(s)"
           }
         },
+        "security": [
+          {
+            "API Auth": []
+          }
+        ],
         "servers": [
           {
             "url": "https://api-custom.eyesover.com/backend/custom"
@@ -528,6 +568,11 @@
             "description": "bad input parameter(s)"
           }
         },
+        "security": [
+          {
+            "API Auth": []
+          }
+        ],
         "servers": [
           {
             "url": "https://api-custom.eyesover.com/backend/custom"
@@ -645,6 +690,11 @@
             "description": "bad input parameter(s)"
           }
         },
+        "security": [
+          {
+            "API Auth": []
+          }
+        ],
         "servers": [
           {
             "url": "https://api-custom.eyesover.com/backend/custom"
@@ -712,6 +762,11 @@
             "description": "not authorized to access this resource"
           }
         },
+        "security": [
+          {
+            "API Auth": []
+          }
+        ],
         "servers": [
           {
             "url": "https://api-custom.eyesover.com/backend/custom"
@@ -772,6 +827,11 @@
             "description": "not authorized to access this resource"
           }
         },
+        "security": [
+          {
+            "API Auth": []
+          }
+        ],
         "servers": [
           {
             "url": "https://api-custom.eyesover.com/backend/custom"
@@ -863,6 +923,11 @@
             "description": "not authorized to access this resource"
           }
         },
+        "security": [
+          {
+            "API Auth": []
+          }
+        ],
         "servers": [
           {
             "url": "https://api-custom.eyesover.com/backend/custom"
@@ -929,6 +994,11 @@
             "description": "not authorized to access this resource"
           }
         },
+        "security": [
+          {
+            "API Auth": []
+          }
+        ],
         "servers": [
           {
             "url": "https://api-custom.eyesover.com/backend/custom"
@@ -971,6 +1041,11 @@
             "description": "not authorized to access this resource"
           }
         },
+        "security": [
+          {
+            "API Auth": []
+          }
+        ],
         "servers": [
           {
             "url": "https://api-custom.eyesover.com/backend/custom"
@@ -1665,5 +1740,11 @@
         }
       }
     }
-  }
+  },
+  "security": [
+    {
+      "API Auth": []
+    }
+  ],
+  "x-internal": true
 }
