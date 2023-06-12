@@ -11,7 +11,7 @@ info:
     url: www.eyesover.com
     name: Private-Use-Only
 servers:
-  - url: 'https://api-custom.eyesover.com/nucleus'
+  - url: 'https://backend.eyesover.com/premium'
 paths:
   /entity/labels:
     get:
@@ -30,8 +30,7 @@ paths:
           explode: true
           schema:
             type: string
-            examples:
-              - ga-abc
+            example: ga-abc
       responses:
         '200':
           description: List of entities the system is using to label content and stats
@@ -39,11 +38,11 @@ paths:
             application/json:
               schema:
                 type: array
-                examples:
-                  - - Coca-Cola
-                    - Pepsi
                 items:
                   type: string
+                example:
+                  - Coca-Cola
+                  - Pepsi
               examples:
                 default:
                   value:
@@ -52,9 +51,9 @@ paths:
         '403':
           description: not authorized to access this resource
       security:
-        - ApiKeyAuth: []
+        - Authentication: []
       servers:
-        - url: 'https://api-custom.eyesover.com/nucleus'
+        - url: 'https://backend.eyesover.com/premium'
   /topic/labels:
     get:
       tags:
@@ -72,8 +71,7 @@ paths:
           explode: true
           schema:
             type: string
-            examples:
-              - ga-abc
+            example: ga-abc
       responses:
         '200':
           description: List of topics the system is using to label content and stats
@@ -81,11 +79,11 @@ paths:
             application/json:
               schema:
                 type: array
-                examples:
-                  - - Sugar Consumption
-                    - Boycott
                 items:
                   type: string
+                example:
+                  - Sugar Consumption
+                  - Boycott
               examples:
                 default:
                   value:
@@ -94,9 +92,9 @@ paths:
         '403':
           description: not authorized to access this resource
       security:
-        - ApiKeyAuth: []
+        - Authentication: []
       servers:
-        - url: 'https://api-custom.eyesover.com/nucleus'
+        - url: 'https://backend.eyesover.com/premium'
   /topic/stats:
     get:
       tags:
@@ -112,16 +110,14 @@ paths:
           required: true
           schema:
             type: string
-            examples:
-              - ga-abc
+            example: ga-abc
         - name: entity
           in: query
           description: |
             Returns topic stats related to the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)
           schema:
             type: string
-            examples:
-              - Coca-Cola
+            example: Coca-Cola
       responses:
         '200':
           description: List of topics with the day's sentiment and talking about stats
@@ -132,9 +128,9 @@ paths:
         '403':
           description: not authorized to access this resource
       security:
-        - ApiKeyAuth: []
+        - Authentication: []
       servers:
-        - url: 'https://api-custom.eyesover.com/nucleus'
+        - url: 'https://backend.eyesover.com/premium'
   /impact/gain_loss:
     get:
       tags:
@@ -150,8 +146,7 @@ paths:
           required: true
           schema:
             type: string
-            examples:
-              - ga-abc
+            example: ga-abc
         - name: entity
           in: query
           description: |
@@ -159,8 +154,7 @@ paths:
           required: true
           schema:
             type: string
-            examples:
-              - Coca-Cola
+            example: Coca-Cola
         - name: topic
           in: query
           description: |
@@ -168,8 +162,7 @@ paths:
           required: true
           schema:
             type: string
-            examples:
-              - Sugar Consumption
+            example: Sugar Consumption
       responses:
         '200':
           description: List of the last 7 days of stats with each day's impact (gain and loss) numbers
@@ -182,9 +175,9 @@ paths:
         '422':
           description: bad input parameter(s)
       security:
-        - ApiKeyAuth: []
+        - Authentication: []
       servers:
-        - url: 'https://api-custom.eyesover.com/nucleus'
+        - url: 'https://backend.eyesover.com/premium'
   /impact/gain_loss/topics:
     get:
       tags:
@@ -200,16 +193,14 @@ paths:
           required: true
           schema:
             type: string
-            examples:
-              - ga-abc
+            example: ga-abc
         - name: entity
           in: query
           description: |
             Filter stats referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)
           schema:
             type: string
-            examples:
-              - Coca-Cola
+            example: Coca-Cola
       responses:
         '200':
           description: List of today's topics with the most impact (by gain or loss of support)
@@ -222,9 +213,9 @@ paths:
         '422':
           description: bad input parameter(s)
       security:
-        - ApiKeyAuth: []
+        - Authentication: []
       servers:
-        - url: 'https://api-custom.eyesover.com/nucleus'
+        - url: 'https://backend.eyesover.com/premium'
   /impact/gain_loss/entities:
     get:
       tags:
@@ -240,16 +231,14 @@ paths:
           required: true
           schema:
             type: string
-            examples:
-              - ga-abc
+            example: ga-abc
         - name: topic
           in: query
           description: |
             Filter stats referencing the topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)
           schema:
             type: string
-            examples:
-              - Sugar Consumption
+            example: Sugar Consumption
       responses:
         '200':
           description: List of today's entities with the most impact (by gain or loss of support)
@@ -262,9 +251,9 @@ paths:
         '422':
           description: bad input parameter(s)
       security:
-        - ApiKeyAuth: []
+        - Authentication: []
       servers:
-        - url: 'https://api-custom.eyesover.com/nucleus'
+        - url: 'https://backend.eyesover.com/premium'
   /impact/overall_support:
     get:
       tags:
@@ -280,8 +269,7 @@ paths:
           required: true
           schema:
             type: string
-            examples:
-              - ga-abc
+            example: ga-abc
         - name: entity
           in: query
           description: |
@@ -289,8 +277,7 @@ paths:
           required: true
           schema:
             type: string
-            examples:
-              - Coca-Cola
+            example: Coca-Cola
         - name: topic
           in: query
           description: |
@@ -298,8 +285,7 @@ paths:
           required: true
           schema:
             type: string
-            examples:
-              - Sugar Consumption
+            example: Sugar Consumption
       responses:
         '200':
           description: List of the last 7 days of stats with each day's impact to the support
@@ -312,9 +298,9 @@ paths:
         '422':
           description: bad input parameter(s)
       security:
-        - ApiKeyAuth: []
+        - Authentication: []
       servers:
-        - url: 'https://api-custom.eyesover.com/nucleus'
+        - url: 'https://backend.eyesover.com/premium'
   /impact/overall_support/topics:
     get:
       tags:
@@ -330,16 +316,14 @@ paths:
           required: true
           schema:
             type: string
-            examples:
-              - ga-abc
+            example: ga-abc
         - name: entity
           in: query
           description: |
             Filter stats referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)
           schema:
             type: string
-            examples:
-              - Coca-Cola
+            example: Coca-Cola
       responses:
         '200':
           description: List of topics with the most impact to an entity's support base
@@ -352,9 +336,9 @@ paths:
         '422':
           description: bad input parameter(s)
       security:
-        - ApiKeyAuth: []
+        - Authentication: []
       servers:
-        - url: 'https://api-custom.eyesover.com/nucleus'
+        - url: 'https://backend.eyesover.com/premium'
   /impact/overall_support/entities:
     get:
       tags:
@@ -370,16 +354,14 @@ paths:
           required: true
           schema:
             type: string
-            examples:
-              - ga-abc
+            example: ga-abc
         - name: topic
           in: query
           description: |
             Filter stats referencing the topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)
           schema:
             type: string
-            examples:
-              - Sugar Consumption
+            example: Sugar Consumption
       responses:
         '200':
           description: List of entities ordered by greatest impact to the entity's support base
@@ -392,9 +374,9 @@ paths:
         '422':
           description: bad input parameter(s)
       security:
-        - ApiKeyAuth: []
+        - Authentication: []
       servers:
-        - url: 'https://api-custom.eyesover.com/nucleus'
+        - url: 'https://backend.eyesover.com/premium'
   /content:
     get:
       tags:
@@ -410,8 +392,7 @@ paths:
           required: true
           schema:
             type: string
-            examples:
-              - ga-abc
+            example: ga-abc
         - name: source
           in: query
           description: |
@@ -436,32 +417,28 @@ paths:
             Note: when this parameter is used, the content is returned in _reverse_ chronological order. Otherwise it is returned chronologically.
           schema:
             type: string
-            examples:
-              - '1970-01-01T00:00:00+0400'
+            example: '1970-01-01T00:00:00+0400'
         - name: until
           in: query
           description: |
             Returns content created _before_ the given date. Date should be formatted as `YYYY-MM-DDTHH:MM:SS±HHMM` (or `YYYY-MM-DDTHH:MM:SSZ`).
           schema:
             type: string
-            examples:
-              - '1970-01-01T00:00:00+0400'
+            example: '1970-01-01T00:00:00+0400'
         - name: entity
           in: query
           description: |
             Returns content referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)
           schema:
             type: string
-            examples:
-              - Coca-Cola
+            example: Coca-Cola
         - name: topic
           in: query
           description: |
             Returns content referencing the Topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)
           schema:
             type: string
-            examples:
-              - Sugar Consumption
+            example: Sugar Consumption
         - name: next
           in: query
           description: |
@@ -494,9 +471,9 @@ paths:
         '422':
           description: bad input parameter(s)
       security:
-        - ApiKeyAuth: []
+        - Authentication: []
       servers:
-        - url: 'https://api-custom.eyesover.com/nucleus'
+        - url: 'https://backend.eyesover.com/premium'
   /sentiment/current:
     get:
       tags:
@@ -511,24 +488,21 @@ paths:
           required: true
           schema:
             type: string
-            examples:
-              - ga-abc
+            example: ga-abc
         - name: entity
           in: query
           description: |
             Filter stats referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)
           schema:
             type: string
-            examples:
-              - Coca-Cola
+            example: Coca-Cola
         - name: topic
           in: query
           description: |
             Filter stats referencing the Topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)
           schema:
             type: string
-            examples:
-              - Sugar Consumption
+            example: Sugar Consumption
       responses:
         '200':
           description: Sentiment based on the parameters provided
@@ -544,9 +518,9 @@ paths:
         '403':
           description: not authorized to access this resource
       security:
-        - ApiKeyAuth: []
+        - Authentication: []
       servers:
-        - url: 'https://api-custom.eyesover.com/nucleus'
+        - url: 'https://backend.eyesover.com/premium'
   /sentiment/graph:
     get:
       tags:
@@ -561,24 +535,21 @@ paths:
           required: true
           schema:
             type: string
-            examples:
-              - ga-abc
+            example: ga-abc
         - name: entity
           in: query
           description: |
             Filter stats referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)
           schema:
             type: string
-            examples:
-              - Coca-Cola
+            example: Coca-Cola
         - name: topic
           in: query
           description: |
             Filter stats referencing the Topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)
           schema:
             type: string
-            examples:
-              - Sugar Consumption
+            example: Sugar Consumption
       responses:
         '200':
           description: List of the last 30 days of sentiment and talking about stats
@@ -589,9 +560,9 @@ paths:
         '403':
           description: not authorized to access this resource
       security:
-        - ApiKeyAuth: []
+        - Authentication: []
       servers:
-        - url: 'https://api-custom.eyesover.com/nucleus'
+        - url: 'https://backend.eyesover.com/premium'
   /sentiment/termcloud:
     get:
       tags:
@@ -606,24 +577,21 @@ paths:
           required: true
           schema:
             type: string
-            examples:
-              - ga-abc
+            example: ga-abc
         - name: entity
           in: query
           description: |
             Filter words referencing the Entity provided. The entity must match the label used by Eyesover (find entity labels at `.../entity/labels` endpoint)
           schema:
             type: string
-            examples:
-              - Coca-Cola
+            example: Coca-Cola
         - name: topic
           in: query
           description: |
             Filter words referencing the Topic provided. The topic must match the label used by Eyesover (find topic labels at `.../topic/labels` endpoint)
           schema:
             type: string
-            examples:
-              - Sugar Consumption
+            example: Sugar Consumption
       responses:
         '200':
           description: List of the top words identified based on the parameters given
@@ -646,8 +614,7 @@ paths:
                         sent:
                           type: number
                           description: The sentiment of all the people talking about this topic over the past day (scale = 0.0-100.0)
-                          examples:
-                            - 12.3456
+                          example: 12.3456
                         topic:
                           type: string
                           description: The topic that is being discussed
@@ -657,12 +624,12 @@ paths:
         '403':
           description: not authorized to access this resource
       security:
-        - ApiKeyAuth: []
+        - Authentication: []
       servers:
-        - url: 'https://api-custom.eyesover.com/nucleus'
+        - url: 'https://backend.eyesover.com/premium'
   /support/current:
     get:
-      tags: 
+      tags:
         - support
       summary: Current Support Score
       description: 'Get a list of all the entities and each of their support scores based on the past 24 hours of content, ready for graphing'
@@ -674,8 +641,7 @@ paths:
           required: true
           schema:
             type: string
-            examples:
-              - ga-abc
+            example: ga-abc
       responses:
         '200':
           description: List of the support scores for each entity
@@ -695,22 +661,20 @@ paths:
                         'y':
                           type: number
                           description: The support score (scale = 0.0-100.0) for the entity
-                          examples:
-                            - 12.3456
+                          example: 12.3456
                         color:
                           type: string
                           description: HEX color code for the entity (often the brand's primary color)
-                          examples:
-                            - '#4862a3'
+                          example: '#4862a3'
         '403':
           description: not authorized to access this resource
       security:
-        - ApiKeyAuth: []
+        - Authentication: []
       servers:
-        - url: 'https://api-custom.eyesover.com/nucleus'
+        - url: 'https://backend.eyesover.com/premium'
   /support/graph:
     get:
-      tags: 
+      tags:
         - support
       summary: 30-day Support Score
       description: 'Get a list of all the entities and each of their support scores for the last 30 days, ready for graphing'
@@ -722,8 +686,7 @@ paths:
           required: true
           schema:
             type: string
-            examples:
-              - ga-abc
+            example: ga-abc
       responses:
         '200':
           description: List of the last 30 days worth of support scores for each entity
@@ -734,9 +697,9 @@ paths:
         '403':
           description: not authorized to access this resource
       security:
-        - ApiKeyAuth: []
+        - Authentication: []
       servers:
-        - url: 'https://api-custom.eyesover.com/nucleus'
+        - url: 'https://backend.eyesover.com/premium'
 tags:
   - name: labels
     description: Labels used by the system to tagging content and stats
@@ -750,10 +713,45 @@ tags:
     description: Social media content
 components:
   securitySchemes:
-    ApiKeyAuth:
-      type: apiKey
-      name: x-api-key
-      in: header
+    Authentication:
+      type: oauth2
+      description: |-
+        ## Summary
+        To authenticate with Eyesover's API, use your API (App) ID and Secret keys to request an access token. If you do not have API (App) keys, you can generate them by going to the ***API KEYS*** tab and creating an ***Eyesover App Client***. 
+
+        *NOTE: Be sure to write down your **secret_key** as Eyesover does not save this key.*
+
+        ### The steps to make an authorized API call:
+        * An app makes a `POST` request to https://auth.eyesover.com/oauth2/token, and specifies the following parameters:
+          - Content-Type: *application/x-www-form-urlencoded*
+          - Post Field: *{ grant_type: client_credentials }*
+          - Authorization header: *Basic Base64Encode(APP_ID:APP_SECRET)*
+          Where `BASE64(APP_ID:APP_SECRET)` is the base64 representation of the app ID and app secret key, concatenated with a colon.
+
+          ```
+          $AUTH_HEADER = base64_encode($APP_ID . ':' . $APP_SECRET)
+          $headers = array(
+            'Content-Type:application/x-www-form-urlencoded',
+            'Authorization: Basic '. $AUTH_HEADER
+          );
+          ```
+        * The authorization server returns a JSON object with the following keys:
+          * *access_token* – A valid access token.
+          * *expires_in* – The length of time (in seconds) that the provided access token is valid for.
+          * *token_type* – Set to ”Bearer“.
+          ```
+          {
+              "access_token": "eyJraWQiOiJPVzhDQXp4amJr...",
+              "expires_in": 3600,
+              "token_type": "Bearer"
+          }
+          ```
+        * Use this ***access_token*** in the **Authorization** header of each API request as a **Bearer** token: Example: `{Authorization: Bearer access_token}`
+      flows:
+        clientCredentials:
+          refreshUrl: ''
+          scopes: {}
+          tokenUrl: 'https://auth.eyesover.com/oauth2/token'
   schemas:
     TopicStatsResponse:
       type: object
@@ -774,8 +772,7 @@ components:
                 sent:
                   type: number
                   description: The sentiment of all the people talking about this entity over the past day (scale = 0.0-100.0)
-                  examples:
-                    - 12.3456
+                  example: 12.3456
             topics:
               type: array
               items:
@@ -787,8 +784,7 @@ components:
                   sent:
                     type: number
                     description: 'The sentiment of all the people talking about this topic (and entity, if provided) over the past day (scale = 0.0-100.0)'
-                    examples:
-                      - 12.3456
+                    example: 12.3456
                   topic:
                     type: string
                     description: The topic that is being discussed
@@ -861,8 +857,7 @@ components:
               impact:
                 type: number
                 description: Impact of this topic to the overall support base (scale = 0.0-100.0)
-                examples:
-                  - 1.2345
+                example: 1.2345
               topic:
                 type: string
                 description: The name of the topic which has gained/lost support
@@ -881,8 +876,7 @@ components:
               impact:
                 type: number
                 description: Impact of this topic to the entity's support base (scale = 0.0-100.0)
-                examples:
-                  - 1.2345
+                example: 1.2345
               topic:
                 type: string
                 description: The name of the topic which has gained/lost support
@@ -897,8 +891,7 @@ components:
               impact:
                 type: number
                 description: Impact this entity had to their support base (scale = 0.0-100.0) by the topic
-                examples:
-                  - 1.2345
+                example: 1.2345
               entity:
                 type: string
                 description: The name of the entity which has been impacted
@@ -933,8 +926,7 @@ components:
         src:
           type: string
           description: Social media source
-          examples:
-            - news
+          example: news
         date:
           type: string
           description: Date content was published
@@ -978,20 +970,20 @@ components:
           type: string
     ContentTopicArray:
       type: array
-      examples:
-        - - Sugar Consumption
-          - Boycott
       uniqueItems: true
       items:
         type: string
+      example:
+        - Sugar Consumption
+        - Boycott
     ContentEntityArray:
       type: array
-      examples:
-        - - Coca-Cola
-          - Pepsi
       uniqueItems: true
       items:
         type: string
+      example:
+        - Coca-Cola
+        - Pepsi
     TwitterItem:
       type: object
       properties:
@@ -1002,8 +994,7 @@ components:
         src:
           type: string
           description: Social media source
-          examples:
-            - twitter
+          example: twitter
         date:
           type: string
           description: Date content was published
@@ -1042,8 +1033,7 @@ components:
         src:
           type: string
           description: Social media source
-          examples:
-            - youtube
+          example: youtube
         date:
           type: string
           description: Date content was published
@@ -1054,8 +1044,7 @@ components:
         content:
           type: string
           description: Content of the Youtube comment
-          examples:
-            - 'And Biden encouraging all the migrants to go through the dangerous journey through central America and Mexico. I am sure Desantis treatment is A MILLION times better than […].'
+          example: 'And Biden encouraging all the migrants to go through the dangerous journey through central America and Mexico. I am sure Desantis treatment is A MILLION times better than […].'
         author:
           $ref: '#/components/schemas/BaseAuthorItem'
           description: Details about the author of this Youtube comment
@@ -1078,8 +1067,7 @@ components:
         src:
           type: string
           description: Social media source
-          examples:
-            - reddit
+          example: reddit
         date:
           type: string
           description: Date content was published
@@ -1112,8 +1100,7 @@ components:
         src:
           type: string
           description: Social media source
-          examples:
-            - facebook_post
+          example: facebook_post
         date:
           type: string
           description: Date content was published
@@ -1146,8 +1133,7 @@ components:
         src:
           type: string
           description: Social media source
-          examples:
-            - facebook_comment
+          example: facebook_comment
         date:
           type: string
           description: Date content was published
@@ -1189,8 +1175,7 @@ components:
               sent:
                 type: number
                 description: The sentiment (scale = 0.0-100.0) of all the people talking about this entity and/or topic for this day
-                examples:
-                  - 12.3456
+                example: 12.3456
     SupportGraphResponse:
       type: object
       properties:
@@ -1206,8 +1191,7 @@ components:
               color:
                 type: string
                 description: HEX color code for the entity (often the brand's primary color)
-                examples:
-                  - '#4862a3'
+                example: '#4862a3'
               data:
                 type: array
                 description: List of the past 30 days of support scores for this entity
@@ -1221,7 +1205,7 @@ components:
                     'y':
                       type: number
                       description: The support score (scale = 0.0-100.0) for the entity on this day
-                      examples:
-                        - 12.3456
+                      example: 12.3456
 security:
-  - ApiKeyAuth: []
+  - Authentication: []
+x-internal: true
