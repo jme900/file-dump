@@ -11,7 +11,7 @@ info:
     url: www.eyesover.com
     name: Private-Use-Only
 servers:
-  - url: 'https://backend.eyesover.com/premium'
+  - url: 'https://prod.eyesover.com/premium'
 paths:
   /entity/labels:
     get:
@@ -53,7 +53,7 @@ paths:
       security:
         - Authentication: []
       servers:
-        - url: 'https://backend.eyesover.com/premium'
+        - url: 'https://prod.eyesover.com/premium'
   /topic/labels:
     get:
       tags:
@@ -94,7 +94,7 @@ paths:
       security:
         - Authentication: []
       servers:
-        - url: 'https://backend.eyesover.com/premium'
+        - url: 'https://prod.eyesover.com/premium'
   /topic/stats:
     get:
       tags:
@@ -130,7 +130,7 @@ paths:
       security:
         - Authentication: []
       servers:
-        - url: 'https://backend.eyesover.com/premium'
+        - url: 'https://prod.eyesover.com/premium'
   /impact/gain_loss:
     get:
       tags:
@@ -177,7 +177,7 @@ paths:
       security:
         - Authentication: []
       servers:
-        - url: 'https://backend.eyesover.com/premium'
+        - url: 'https://prod.eyesover.com/premium'
   /impact/gain_loss/topics:
     get:
       tags:
@@ -215,7 +215,7 @@ paths:
       security:
         - Authentication: []
       servers:
-        - url: 'https://backend.eyesover.com/premium'
+        - url: 'https://prod.eyesover.com/premium'
   /impact/gain_loss/entities:
     get:
       tags:
@@ -253,7 +253,7 @@ paths:
       security:
         - Authentication: []
       servers:
-        - url: 'https://backend.eyesover.com/premium'
+        - url: 'https://prod.eyesover.com/premium'
   /impact/overall_support:
     get:
       tags:
@@ -300,7 +300,7 @@ paths:
       security:
         - Authentication: []
       servers:
-        - url: 'https://backend.eyesover.com/premium'
+        - url: 'https://prod.eyesover.com/premium'
   /impact/overall_support/topics:
     get:
       tags:
@@ -338,7 +338,7 @@ paths:
       security:
         - Authentication: []
       servers:
-        - url: 'https://backend.eyesover.com/premium'
+        - url: 'https://prod.eyesover.com/premium'
   /impact/overall_support/entities:
     get:
       tags:
@@ -376,7 +376,7 @@ paths:
       security:
         - Authentication: []
       servers:
-        - url: 'https://backend.eyesover.com/premium'
+        - url: 'https://prod.eyesover.com/premium'
   /content:
     get:
       tags:
@@ -473,7 +473,7 @@ paths:
       security:
         - Authentication: []
       servers:
-        - url: 'https://backend.eyesover.com/premium'
+        - url: 'https://prod.eyesover.com/premium'
   /sentiment/current:
     get:
       tags:
@@ -520,7 +520,7 @@ paths:
       security:
         - Authentication: []
       servers:
-        - url: 'https://backend.eyesover.com/premium'
+        - url: 'https://prod.eyesover.com/premium'
   /sentiment/graph:
     get:
       tags:
@@ -562,7 +562,7 @@ paths:
       security:
         - Authentication: []
       servers:
-        - url: 'https://backend.eyesover.com/premium'
+        - url: 'https://prod.eyesover.com/premium'
   /sentiment/termcloud:
     get:
       tags:
@@ -626,7 +626,7 @@ paths:
       security:
         - Authentication: []
       servers:
-        - url: 'https://backend.eyesover.com/premium'
+        - url: 'https://prod.eyesover.com/premium'
   /support/current:
     get:
       tags:
@@ -671,7 +671,7 @@ paths:
       security:
         - Authentication: []
       servers:
-        - url: 'https://backend.eyesover.com/premium'
+        - url: 'https://prod.eyesover.com/premium'
   /support/graph:
     get:
       tags:
@@ -699,7 +699,7 @@ paths:
       security:
         - Authentication: []
       servers:
-        - url: 'https://backend.eyesover.com/premium'
+        - url: 'https://prod.eyesover.com/premium'
 tags:
   - name: labels
     description: Labels used by the system to tagging content and stats
