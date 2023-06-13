@@ -16,7 +16,7 @@
   },
   "servers": [
     {
-      "url": "https://backend.eyesover.com/premium"
+      "url": "https://prod.eyesover.com/premium"
     }
   ],
   "paths": {
@@ -79,7 +79,7 @@
         ],
         "servers": [
           {
-            "url": "https://backend.eyesover.com/premium"
+            "url": "https://prod.eyesover.com/premium"
           }
         ]
       }
@@ -143,7 +143,7 @@
         ],
         "servers": [
           {
-            "url": "https://backend.eyesover.com/premium"
+            "url": "https://prod.eyesover.com/premium"
           }
         ]
       }
@@ -199,7 +199,7 @@
         ],
         "servers": [
           {
-            "url": "https://backend.eyesover.com/premium"
+            "url": "https://prod.eyesover.com/premium"
           }
         ]
       }
@@ -269,7 +269,7 @@
         ],
         "servers": [
           {
-            "url": "https://backend.eyesover.com/premium"
+            "url": "https://prod.eyesover.com/premium"
           }
         ]
       }
@@ -328,7 +328,7 @@
         ],
         "servers": [
           {
-            "url": "https://backend.eyesover.com/premium"
+            "url": "https://prod.eyesover.com/premium"
           }
         ]
       }
@@ -387,7 +387,7 @@
         ],
         "servers": [
           {
-            "url": "https://backend.eyesover.com/premium"
+            "url": "https://prod.eyesover.com/premium"
           }
         ]
       }
@@ -457,7 +457,7 @@
         ],
         "servers": [
           {
-            "url": "https://backend.eyesover.com/premium"
+            "url": "https://prod.eyesover.com/premium"
           }
         ]
       }
@@ -516,7 +516,7 @@
         ],
         "servers": [
           {
-            "url": "https://backend.eyesover.com/premium"
+            "url": "https://prod.eyesover.com/premium"
           }
         ]
       }
@@ -575,7 +575,7 @@
         ],
         "servers": [
           {
-            "url": "https://backend.eyesover.com/premium"
+            "url": "https://prod.eyesover.com/premium"
           }
         ]
       }
@@ -697,7 +697,7 @@
         ],
         "servers": [
           {
-            "url": "https://backend.eyesover.com/premium"
+            "url": "https://prod.eyesover.com/premium"
           }
         ]
       }
@@ -769,7 +769,7 @@
         ],
         "servers": [
           {
-            "url": "https://backend.eyesover.com/premium"
+            "url": "https://prod.eyesover.com/premium"
           }
         ]
       }
@@ -834,7 +834,7 @@
         ],
         "servers": [
           {
-            "url": "https://backend.eyesover.com/premium"
+            "url": "https://prod.eyesover.com/premium"
           }
         ]
       }
@@ -930,7 +930,7 @@
         ],
         "servers": [
           {
-            "url": "https://backend.eyesover.com/premium"
+            "url": "https://prod.eyesover.com/premium"
           }
         ]
       }
@@ -1001,7 +1001,7 @@
         ],
         "servers": [
           {
-            "url": "https://backend.eyesover.com/premium"
+            "url": "https://prod.eyesover.com/premium"
           }
         ]
       }
@@ -1048,7 +1048,7 @@
         ],
         "servers": [
           {
-            "url": "https://backend.eyesover.com/premium"
+            "url": "https://prod.eyesover.com/premium"
           }
         ]
       }
