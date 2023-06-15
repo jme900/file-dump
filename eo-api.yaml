@@ -744,15 +744,17 @@ tags:
 components:
   securitySchemes:
     Authentication:
-      type: oauth2
+      type: http
       description: |-
         ## Summary
         To authenticate with Eyesover's API, use your API (App) ID and Secret keys to request an access token. If you do not have API (App) keys, you can generate them by going to the ***API KEYS*** tab and creating an ***Eyesover App Client***. 
 
         *NOTE: Be sure to write down your **secret_key** as Eyesover does not save this key.*
 
+        Token URL: https://auth.eyesover.com/oauth2/token
+
         ### The steps to make an authorized API call:
-        * An app makes a `POST` request to https://auth.eyesover.com/oauth2/token, and specifies the following parameters:
+        * An app makes a `POST` request to the Token URL and specifies the following parameters:
           - Content-Type: *application/x-www-form-urlencoded*
           - Post Field: *{ grant_type: client_credentials }*
           - Authorization header: *Basic Base64Encode(APP_ID:APP_SECRET)*
@@ -777,11 +779,7 @@ components:
           }
           ```
         * Use this ***access_token*** in the **Authorization** header of each API request as a **Bearer** token: Example: `{Authorization: Bearer access_token}`
-      flows:
-        clientCredentials:
-          refreshUrl: ''
-          scopes: {}
-          tokenUrl: 'https://auth.eyesover.com/oauth2/token'
+      scheme: bearer
   schemas:
     TopicStatsResponse:
       type: object
