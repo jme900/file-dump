@@ -48,8 +48,10 @@ paths:
                   value:
                     - Coca-Cola
                     - Pepsi
+        '204':
+          description: No content based on the parameters provided
         '403':
-          description: not authorized to access this resource
+          description: Not authorized to access this resource
       security:
         - Authentication: []
       servers:
@@ -89,8 +91,10 @@ paths:
                   value:
                     - Sugar Consumption
                     - Boycott
+        '204':
+          description: No content based on the parameters provided
         '403':
-          description: not authorized to access this resource
+          description: Not authorized to access this resource
       security:
         - Authentication: []
       servers:
@@ -125,8 +129,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TopicStatsResponse'
+        '204':
+          description: No content based on the parameters provided
         '403':
-          description: not authorized to access this resource
+          description: Not authorized to access this resource
       security:
         - Authentication: []
       servers:
@@ -170,10 +176,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GainLossResponse'
+        '204':
+          description: No content based on the parameters provided
         '403':
-          description: not authorized to access this resource
+          description: Not authorized to access this resource
         '422':
-          description: bad input parameter(s)
+          description: Bad input parameter(s)
       security:
         - Authentication: []
       servers:
@@ -208,10 +216,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TopicGainLossResponse'
+        '204':
+          description: No content based on the parameters provided
         '403':
-          description: not authorized to access this resource
+          description: Not authorized to access this resource
         '422':
-          description: bad input parameter(s)
+          description: Bad input parameter(s)
       security:
         - Authentication: []
       servers:
@@ -246,10 +256,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityGainLossResponse'
+        '204':
+          description: No content based on the parameters provided
         '403':
-          description: not authorized to access this resource
+          description: Not authorized to access this resource
         '422':
-          description: bad input parameter(s)
+          description: Bad input parameter(s)
       security:
         - Authentication: []
       servers:
@@ -293,10 +305,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OverallSupportResponse'
+        '204':
+          description: No content based on the parameters provided
         '403':
-          description: not authorized to access this resource
+          description: Not authorized to access this resource
         '422':
-          description: bad input parameter(s)
+          description: Bad input parameter(s)
       security:
         - Authentication: []
       servers:
@@ -331,10 +345,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TopicOverallSupportResponse'
+        '204':
+          description: No content based on the parameters provided
         '403':
-          description: not authorized to access this resource
+          description: Not authorized to access this resource
         '422':
-          description: bad input parameter(s)
+          description: Bad input parameter(s)
       security:
         - Authentication: []
       servers:
@@ -369,10 +385,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityOverallSupportResponse'
+        '204':
+          description: No content based on the parameters provided
         '403':
-          description: not authorized to access this resource
+          description: Not authorized to access this resource
         '422':
-          description: bad input parameter(s)
+          description: Bad input parameter(s)
       security:
         - Authentication: []
       servers:
@@ -466,8 +484,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContentResponse'
+        '204':
+          description: No content based on the parameters provided
         '403':
-          description: not authorized to access this resource
+          description: Not authorized to access this resource
         '422':
           description: bad input parameter(s)
       security:
@@ -515,8 +535,10 @@ paths:
                     type: number
                     description: The sentiment of all the people talking about this entity and/or topic over the past day (scale = 0.0-100.0)
                     example: 12.3456
+        '204':
+          description: No content based on the parameters provided
         '403':
-          description: not authorized to access this resource
+          description: Not authorized to access this resource
       security:
         - Authentication: []
       servers:
@@ -557,8 +579,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SentimentGraphResponse'
+        '204':
+          description: No content based on the parameters provided
         '403':
-          description: not authorized to access this resource
+          description: Not authorized to access this resource
       security:
         - Authentication: []
       servers:
@@ -621,8 +645,10 @@ paths:
                         category:
                           type: string
                           description: The broader category that the topic being discussed falls under
+        '204':
+          description: No content based on the parameters provided
         '403':
-          description: not authorized to access this resource
+          description: Not authorized to access this resource
       security:
         - Authentication: []
       servers:
@@ -666,8 +692,10 @@ paths:
                           type: string
                           description: HEX color code for the entity (often the brand's primary color)
                           example: '#4862a3'
+        '204':
+          description: No content based on the parameters provided
         '403':
-          description: not authorized to access this resource
+          description: Not authorized to access this resource
       security:
         - Authentication: []
       servers:
@@ -694,8 +722,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SupportGraphResponse'
+        '204':
+          description: No content based on the parameters provided
         '403':
-          description: not authorized to access this resource
+          description: Not authorized to access this resource
       security:
         - Authentication: []
       servers:
