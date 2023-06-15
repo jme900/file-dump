@@ -84,13 +84,13 @@ paths:
                 items:
                   type: string
                 example:
-                  - Sugar Consumption
                   - Boycott
+                  - Sugar Consumption
               examples:
                 default:
                   value:
-                    - Sugar Consumption
                     - Boycott
+                    - Sugar Consumption
         '204':
           description: No content based on the parameters provided
         '403':
@@ -1004,8 +1004,8 @@ components:
       items:
         type: string
       example:
-        - Sugar Consumption
         - Boycott
+        - Sugar Consumption
     ContentEntityArray:
       type: array
       uniqueItems: true
