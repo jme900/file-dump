@@ -68,8 +68,11 @@
               }
             }
           },
+          "204": {
+            "description": "No content based on the parameters provided"
+          },
           "403": {
-            "description": "not authorized to access this resource"
+            "description": "Not authorized to access this resource"
           }
         },
         "security": [
@@ -132,8 +135,11 @@
               }
             }
           },
+          "204": {
+            "description": "No content based on the parameters provided"
+          },
           "403": {
-            "description": "not authorized to access this resource"
+            "description": "Not authorized to access this resource"
           }
         },
         "security": [
@@ -188,8 +194,11 @@
               }
             }
           },
+          "204": {
+            "description": "No content based on the parameters provided"
+          },
           "403": {
-            "description": "not authorized to access this resource"
+            "description": "Not authorized to access this resource"
           }
         },
         "security": [
@@ -255,11 +264,14 @@
               }
             }
           },
+          "204": {
+            "description": "No content based on the parameters provided"
+          },
           "403": {
-            "description": "not authorized to access this resource"
+            "description": "Not authorized to access this resource"
           },
           "422": {
-            "description": "bad input parameter(s)"
+            "description": "Bad input parameter(s)"
           }
         },
         "security": [
@@ -314,11 +326,14 @@
               }
             }
           },
+          "204": {
+            "description": "No content based on the parameters provided"
+          },
           "403": {
-            "description": "not authorized to access this resource"
+            "description": "Not authorized to access this resource"
           },
           "422": {
-            "description": "bad input parameter(s)"
+            "description": "Bad input parameter(s)"
           }
         },
         "security": [
@@ -373,11 +388,14 @@
               }
             }
           },
+          "204": {
+            "description": "No content based on the parameters provided"
+          },
           "403": {
-            "description": "not authorized to access this resource"
+            "description": "Not authorized to access this resource"
           },
           "422": {
-            "description": "bad input parameter(s)"
+            "description": "Bad input parameter(s)"
           }
         },
         "security": [
@@ -443,11 +461,14 @@
               }
             }
           },
+          "204": {
+            "description": "No content based on the parameters provided"
+          },
           "403": {
-            "description": "not authorized to access this resource"
+            "description": "Not authorized to access this resource"
           },
           "422": {
-            "description": "bad input parameter(s)"
+            "description": "Bad input parameter(s)"
           }
         },
         "security": [
@@ -502,11 +523,14 @@
               }
             }
           },
+          "204": {
+            "description": "No content based on the parameters provided"
+          },
           "403": {
-            "description": "not authorized to access this resource"
+            "description": "Not authorized to access this resource"
           },
           "422": {
-            "description": "bad input parameter(s)"
+            "description": "Bad input parameter(s)"
           }
         },
         "security": [
@@ -561,11 +585,14 @@
               }
             }
           },
+          "204": {
+            "description": "No content based on the parameters provided"
+          },
           "403": {
-            "description": "not authorized to access this resource"
+            "description": "Not authorized to access this resource"
           },
           "422": {
-            "description": "bad input parameter(s)"
+            "description": "Bad input parameter(s)"
           }
         },
         "security": [
@@ -683,8 +710,11 @@
               }
             }
           },
+          "204": {
+            "description": "No content based on the parameters provided"
+          },
           "403": {
-            "description": "not authorized to access this resource"
+            "description": "Not authorized to access this resource"
           },
           "422": {
             "description": "bad input parameter(s)"
@@ -758,8 +788,11 @@
               }
             }
           },
+          "204": {
+            "description": "No content based on the parameters provided"
+          },
           "403": {
-            "description": "not authorized to access this resource"
+            "description": "Not authorized to access this resource"
           }
         },
         "security": [
@@ -823,8 +856,11 @@
               }
             }
           },
+          "204": {
+            "description": "No content based on the parameters provided"
+          },
           "403": {
-            "description": "not authorized to access this resource"
+            "description": "Not authorized to access this resource"
           }
         },
         "security": [
@@ -919,8 +955,11 @@
               }
             }
           },
+          "204": {
+            "description": "No content based on the parameters provided"
+          },
           "403": {
-            "description": "not authorized to access this resource"
+            "description": "Not authorized to access this resource"
           }
         },
         "security": [
@@ -990,8 +1029,11 @@
               }
             }
           },
+          "204": {
+            "description": "No content based on the parameters provided"
+          },
           "403": {
-            "description": "not authorized to access this resource"
+            "description": "Not authorized to access this resource"
           }
         },
         "security": [
@@ -1037,8 +1079,11 @@
               }
             }
           },
+          "204": {
+            "description": "No content based on the parameters provided"
+          },
           "403": {
-            "description": "not authorized to access this resource"
+            "description": "Not authorized to access this resource"
           }
         },
         "security": [
