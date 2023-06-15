@@ -1124,15 +1124,9 @@
   "components": {
     "securitySchemes": {
       "Authentication": {
-        "type": "oauth2",
-        "description": "## Summary\nTo authenticate with Eyesover's API, use your API (App) ID and Secret keys to request an access token. If you do not have API (App) keys, you can generate them by going to the ***API KEYS*** tab and creating an ***Eyesover App Client***. \n\n*NOTE: Be sure to write down your **secret_key** as Eyesover does not save this key.*\n\n### The steps to make an authorized API call:\n* An app makes a `POST` request to https://auth.eyesover.com/oauth2/token, and specifies the following parameters:\n  - Content-Type: *application/x-www-form-urlencoded*\n  - Post Field: *{ grant_type: client_credentials }*\n  - Authorization header: *Basic Base64Encode(APP_ID:APP_SECRET)*\n  Where `BASE64(APP_ID:APP_SECRET)` is the base64 representation of the app ID and app secret key, concatenated with a colon.\n\n  ```\n  $AUTH_HEADER = base64_encode($APP_ID . ':' . $APP_SECRET)\n  $headers = array(\n    'Content-Type:application/x-www-form-urlencoded',\n    'Authorization: Basic '. $AUTH_HEADER\n  );\n  ```\n* The authorization server returns a JSON object with the following keys:\n  * *access_token* – A valid access token.\n  * *expires_in* – The length of time (in seconds) that the provided access token is valid for.\n  * *token_type* – Set to ”Bearer“.\n  ```\n  {\n      \"access_token\": \"eyJraWQiOiJPVzhDQXp4amJr...\",\n      \"expires_in\": 3600,\n      \"token_type\": \"Bearer\"\n  }\n  ```\n* Use this ***access_token*** in the **Authorization** header of each API request as a **Bearer** token: Example: `{Authorization: Bearer access_token}`",
-        "flows": {
-          "clientCredentials": {
-            "refreshUrl": "",
-            "scopes": {},
-            "tokenUrl": "https://auth.eyesover.com/oauth2/token"
-          }
-        }
+        "type": "http",
+        "description": "## Summary\nTo authenticate with Eyesover's API, use your API (App) ID and Secret keys to request an access token. If you do not have API (App) keys, you can generate them by going to the ***API KEYS*** tab and creating an ***Eyesover App Client***. \n\n*NOTE: Be sure to write down your **secret_key** as Eyesover does not save this key.*\n\nToken URL: https://auth.eyesover.com/oauth2/token\n\n### The steps to make an authorized API call:\n* An app makes a `POST` request to the Token URL and specifies the following parameters:\n  - Content-Type: *application/x-www-form-urlencoded*\n  - Post Field: *{ grant_type: client_credentials }*\n  - Authorization header: *Basic Base64Encode(APP_ID:APP_SECRET)*\n  Where `BASE64(APP_ID:APP_SECRET)` is the base64 representation of the app ID and app secret key, concatenated with a colon.\n\n  ```\n  $AUTH_HEADER = base64_encode($APP_ID . ':' . $APP_SECRET)\n  $headers = array(\n    'Content-Type:application/x-www-form-urlencoded',\n    'Authorization: Basic '. $AUTH_HEADER\n  );\n  ```\n* The authorization server returns a JSON object with the following keys:\n  * *access_token* – A valid access token.\n  * *expires_in* – The length of time (in seconds) that the provided access token is valid for.\n  * *token_type* – Set to ”Bearer“.\n  ```\n  {\n      \"access_token\": \"eyJraWQiOiJPVzhDQXp4amJr...\",\n      \"expires_in\": 3600,\n      \"token_type\": \"Bearer\"\n  }\n  ```\n* Use this ***access_token*** in the **Authorization** header of each API request as a **Bearer** token: Example: `{Authorization: Bearer access_token}`",
+        "scheme": "bearer"
       }
     },
     "schemas": {
