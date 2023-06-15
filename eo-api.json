@@ -120,15 +120,15 @@
                     "type": "string"
                   },
                   "example": [
-                    "Sugar Consumption",
-                    "Boycott"
+                    "Boycott",
+                    "Sugar Consumption"
                   ]
                 },
                 "examples": {
                   "default": {
                     "value": [
-                      "Sugar Consumption",
-                      "Boycott"
+                      "Boycott",
+                      "Sugar Consumption"
                     ]
                   }
                 }
@@ -1465,8 +1465,8 @@
           "type": "string"
         },
         "example": [
-          "Sugar Consumption",
-          "Boycott"
+          "Boycott",
+          "Sugar Consumption"
         ]
       },
       "ContentEntityArray": {
