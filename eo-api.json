@@ -1529,6 +1529,126 @@
           "entities": {
             "$ref": "#/components/schemas/ContentEntityArray",
             "description": "List of Entities identified in the content"
+          },
+          "attachment": {
+            "type": "object",
+            "description": "Contains any/all attachments that this tweet 'shared'",
+            "properties": {
+              "quoted_tweet": {
+                "$ref": "#/components/schemas/Twitter_Quoted",
+                "description": "The original tweet that was quoted."
+              },
+              "enhanced_url": {
+                "type": "array",
+                "description": "List of URLs shared in the tweet",
+                "items": [
+                  {
+                    "$ref": "#/components/schemas/Twitter_EnhancedUrl"
+                  }
+                ]
+              },
+              "upload": {
+                "type": "array",
+                "description": "List of pictures/videos uploaded and shared in the tweet",
+                "items": [
+                  {
+                    "$ref": "#/components/schemas/Twitter_Upload"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "Twitter_Quoted": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID of the Tweet from Twitter's API",
+            "format": "long"
+          },
+          "date": {
+            "type": "string",
+            "description": "Date content was published",
+            "format": "date-time"
+          },
+          "content": {
+            "type": "string",
+            "description": "Tweet's content"
+          },
+          "author": {
+            "type": "object",
+            "description": "Details about the Tweet author",
+            "properties": {
+              "username": {
+                "type": "string",
+                "description": "handle/username of the Tweet's author"
+              }
+            },
+            "required": [
+              "username"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseAuthorItem"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        }
+      },
+      "Twitter_EnhancedUrl": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL to the video/article being shared"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the video/article being shared"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description/summary text of the video/article being shared"
+          }
+        }
+      },
+      "Twitter_Upload": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "enum": [
+              "video",
+              "photo",
+              "animated_gif"
+            ],
+            "description": "Type of upload"
+          },
+          "img_url": {
+            "type": "string",
+            "description": "URL to the thumbnail image"
+          },
+          "size": {
+            "type": "object",
+            "description": "Size of image in img_url",
+            "properties": {
+              "w": {
+                "type": "integer",
+                "description": "Width of image"
+              },
+              "h": {
+                "type": "integer",
+                "description": "Height of image"
+              }
+            }
+          },
+          "src_url": {
+            "type": "string",
+            "description": "URL to the source of the image/video that was uploaded"
           }
         }
       },
